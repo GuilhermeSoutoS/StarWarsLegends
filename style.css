@@ -18,6 +18,8 @@ body {
 .header {
     display: flex;
     flex-direction: row;
+     position: sticky;
+    z-index: 999;
 
 }
 
@@ -42,11 +44,29 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    width: 500px;
-    margin-left: 40%;
+    width: 900px;
+    margin-left: 15%;
     list-style: none;
     color: white;
+
 }
+
+.loginInicio{
+    display: flex;
+    justify-content: center;
+    border: 3px solid white;
+    width: 100px;
+    cursor: pointer;
+}
+
+.cadastroInicio{
+    display: flex;
+    justify-content: center;
+    border: 3px solid white;
+    width: 100px;
+    cursor: pointer;
+}
+
 /* Estilização da primeira parte do index*/
 .inicio {
     display: flex;
@@ -154,43 +174,87 @@ body {
     font-weight: 3px;
 }
 
-.rogue {
-    width: 500px;
+/*Inicio da estilização da terceira parte da pagina*/
+
+.parte3{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.parte3 h1{
+    color: white;
+    font-weight: 3px;
+    font-size: 60px;
+    align-self: center;
+}
+
+.parte3 .container{
+    display: flex;
+    justify-content: center;
+}
+
+.parte3 video{
+    width: 100%;
     height: 100%;
-    flex-basis: 80%;
-    background-color:rgb(37, 36, 36) ;
-    border: 1px solid white;
-    border-radius: 10px;
+}
+
+.inf{
+    display: flex;
+    background-color:rgb(37, 36, 36);
+    justify-content: flex-start;
+    width: 800px;
+    height: 300px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+.inf p{
+    font-size: 30px;
+    color: white;
+    font-weight: 5px;
+}
+
+/*Parte 4 - Personagens principais*/
+
+.parte4{
+    display: flex;
+    justify-content: center;
     
 }
 
-.video{
-  
+
+.persoContainer{
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+.perso{
+    margin-top: 30px;
+    display: flex;
+    background-color:rgb(37, 36, 36);
+    flex-direction: column;
+    width: 200px;
+    height: 300px;
+    border-radius: 20px;
+    justify-content: center;
 }
 
-video{
-    width: 50%;
-    height: 50%;
-    border-radius: 30px;
-}
-
-.rogue h1{
+.perso p{
     color: white;
-    font-weight: 3px;
-    justify-content: flex-end;
-    display: flex;
-    margin-right: 200px;
-    font-size: 50px;
 }
 
-.infoRogue{
-    flex-basis: 50%;
-    background-color: red;
-    display: flex;
+.perso img{
+    margin-left: 30px;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
 }
 
+/*Footer*/
 .footer{
-     width: 100%;
+    margin-top: 50px;
+    width: 100%;
     height: 150px;
     display: flex;
     flex-direction: row;
