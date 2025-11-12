@@ -2,8 +2,6 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
     font-family: Arial, Helvetica, sans-serif
-
-
 }
 
 body {
@@ -17,7 +15,7 @@ body {
 .header {
     display: flex;
     flex-direction: row;
-     position: sticky;
+    position: sticky;
     z-index: 999;
 
 }
@@ -43,14 +41,14 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    width: 900px;
-    margin-left: 15%;
+    width: 800px;
+    margin-left: 20%;
     list-style: none;
     color: white;
 
 }
 
-.loginInicio{
+.loginInicio {
     display: flex;
     justify-content: center;
     border: 3px solid white;
@@ -58,7 +56,7 @@ body {
     cursor: pointer;
 }
 
-.cadastroInicio{
+.cadastroInicio {
     display: flex;
     justify-content: center;
     border: 3px solid white;
@@ -74,10 +72,10 @@ body {
 .inicio img {
     width: 100%;
     height: 800px;
-    
+
 }
 
-#imagem2{
+#imagem2 {
     width: 40%;
     height: 60%;
     position: absolute;
@@ -85,14 +83,14 @@ body {
     margin-left: 30%;
 }
 
-.inicio h1{
+.inicio h1 {
     color: white;
     position: absolute;
     margin-top: 35%;
     margin-left: 31%;
 }
 
-.inicio button{
+.inicio button {
     color: black;
     position: absolute;
     margin-top: 40%;
@@ -131,21 +129,21 @@ body {
 }
 
 
-.introducao{
+.introducao {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
 }
 
 
-#introducaoTitulo{
+#introducaoTitulo {
     display: flex;
     justify-content: center;
     font-size: 50px;
     color: #feda4a;
 }
 
-#introducaoTexto{
+#introducaoTexto {
     display: flex;
     justify-content: center;
     color: white;
@@ -156,14 +154,15 @@ body {
     align-self: center;
     margin-bottom: 50px;
 }
-.introducao h1{
+
+.introducao h1 {
     display: flex;
     justify-content: center;
     color: white;
     font-size: 30px;
 }
 
-.introducao p{
+.introducao p {
     display: flex;
     justify-content: center;
     color: white;
@@ -172,9 +171,9 @@ body {
     font-weight: 3px;
 }
 
-.introducao .card{
+.introducao .card {
     display: flex;
-    background-color:rgb(37, 36, 36);
+    background-color: rgb(37, 36, 36);
     justify-content: flex-start;
     width: 990px;
     height: 380px;
@@ -183,9 +182,9 @@ body {
 }
 
 
-.introducao .card2{
+.introducao .card2 {
     display: flex;
-    background-color:rgb(37, 36, 36);
+    background-color: rgb(37, 36, 36);
     align-self: flex-end;
     width: 990px;
     height: 380px;
@@ -193,7 +192,8 @@ body {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.introducao .card img{
+
+.introducao .card img {
     width: 40%;
     height: 70%;
     border-radius: 20px;
@@ -201,7 +201,7 @@ body {
     margin-left: 40px;
 }
 
-.introducao .card2 img{
+.introducao .card2 img {
     width: 40%;
     height: 70%;
     border-radius: 20px;
@@ -210,7 +210,7 @@ body {
     margin-left: 60px;
 }
 
-.informacao{
+.informacao {
     flex-basis: 50%;
     justify-content: center;
     align-items: center;
@@ -219,32 +219,32 @@ body {
 
 /*Inicio da estilização da terceira parte da pagina*/
 
-.parte3{
+.parte3 {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
-.parte3 h1{
+.parte3 h1 {
     color: white;
     font-weight: 3px;
     font-size: 60px;
     align-self: center;
 }
 
-.parte3 .container{
+.parte3 .container {
     display: flex;
     justify-content: center;
 }
 
-.parte3 video{
+.parte3 video {
     width: 100%;
     height: 100%;
 }
 
-.inf{
+.inf {
     display: flex;
-    background-color:rgb(37, 36, 36);
+    background-color: rgb(37, 36, 36);
     justify-content: flex-start;
     width: 800px;
     height: 300px;
@@ -252,7 +252,7 @@ body {
     margin-left: 10px;
 }
 
-.inf p{
+.inf p {
     font-size: 30px;
     color: white;
     font-weight: 5px;
@@ -260,29 +260,30 @@ body {
 
 /*Parte 4 - Personagens principais*/
 
-.parte4{
+.parte4 {
     margin-top: 100px;
     display: flex;
     justify-content: center;
-    
+
 }
 
 
-.persoContainer{
+.persoContainer {
     display: flex;
     gap: 50px;
     justify-content: center;
 }
 
-.parte4 h1{
+.parte4 h1 {
     display: flex;
     justify-content: center;
 
 }
-.perso{
+
+.perso {
     margin-top: 30px;
     display: flex;
-    background-color:rgb(37, 36, 36);
+    background-color: rgb(37, 36, 36);
     flex-direction: column;
     width: 250px;
     height: 400px;
@@ -290,11 +291,11 @@ body {
     justify-content: center;
 }
 
-.perso p{
+.perso p {
     color: white;
 }
 
-.perso img{
+.perso img {
     margin-left: 30px;
     width: 190px;
     height: 190px;
@@ -302,12 +303,103 @@ body {
 }
 
 /*Footer*/
-.footer{
+.footer {
     margin-top: 50px;
     width: 100%;
-    height: 150px;
+    height: 200px;
     display: flex;
     flex-direction: row;
     background-color: black;
     border: 1px solid white;
+}
+
+.footer .container {
+    display: flex;
+}
+
+.redes-sociais {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-left: 30px;
+    justify-content: center;
+    align-self: center;
+    flex-basis: 33%;
+}
+
+.redes-sociais h1 {
+    color: white;
+    font-size: 25px;
+}
+
+.redes-sociais img {
+    width: 8%;
+    height: auto;
+}
+
+.iconRedes {
+    display: flex;
+    gap: 30px;
+    margin-left: 60PX;
+}
+
+.algumtexto {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-basis: 33%;
+}
+
+.algumtexto h1 {
+    color: white;
+}
+
+.algumtexto p {
+    color: white;
+}
+
+.eu {
+    display: flex;
+    justify-content: center;
+    flex-basis: 33%;
+    flex-direction: column;
+}
+
+.eu img {
+    width: 30%;
+    height: 50%;
+    margin: 30px 0px 0px 200px
+}
+
+/*Tela de cadastro*/
+
+.card .container{
+    display: flex;
+    background-color: rgb(37, 36, 36);
+    justify-content: center;
+    width: 990px;
+    height: 380px;
+    margin-left: 10px;
+    
+}
+
+.eu p {
+    color: white;
+    font-size: 10px;
+    margin-left: 200px;
+}
+
+.footer2 {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: black;
+    border: 1px solid white;
+}
+
+.footer2 h1 {
+    color: white;
+    font-size: 20px;
 }
