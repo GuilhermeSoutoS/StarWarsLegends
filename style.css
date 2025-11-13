@@ -371,76 +371,6 @@ body {
     margin: 30px 0px 0px 200px
 }
 
-/*Tela de cadastro*/
-
-.card .container {
-    display: flex;
-    background-color: rgb(37, 36, 36, 0.5);
-    justify-content: center;
-    width: 500px;
-    height: 680px;
-    margin: 50px 0px 0px 570px;
-    border: 5px solid rgb(30, 200, 255);
-    box-shadow: 0 0 25px #00eaff, inset 0 0 10px #00eaff;
-    
-
-}
-
-#imgEstrelaMorte{
-    position: absolute;
-    margin-top: 200px;
-    
-    width: 400px;
-}
-.camposCadastro {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.camposCadastro img{
-    width: 80%;
-    height: auto;
-    margin-left: 40px;
-}
-.camposCadastro h1 {
-    color: white;
-    font-size: 40px;
-    margin-bottom: 20%;
-}
-
-.campo{
-    display: flex;
-    margin-bottom: 60px;
-}
-
-.camposCadastro input {
-    width: 100%;
-    height: 50px;
-    background-color: rgb(37, 36, 36, 0.5);
-    border: 5px solid rgb(30, 200, 255);
-    box-shadow: 0 0 5px #00eaff, 0 0 10px #00eaff;
-    border-radius: 3px;
-    outline: none;
-    color: white;
-    
-
-}
-
-.camposCadastro input::placeholder {
-    color: white;
-    font-size: 20px;
-}
-
-.camposCadastro button{
-    font-size: 30px;
-    background-color: rgb(30, 200, 255, 0.5);
-    border: 5px solid rgb(30, 200, 255);
-    box-shadow: 0 0 5px #00eaff, 0 0 10px #00eaff;
-    border-radius: 3px;
-    color: white;
-}
-
 .eu p {
     color: white;
     font-size: 10px;
@@ -448,7 +378,6 @@ body {
 }
 
 
-/*Footer*/
 .footer2 {
     width: 100%;
     height: 50px;
@@ -462,4 +391,163 @@ body {
 .footer2 h1 {
     color: white;
     font-size: 20px;
+}
+
+/*Tela de login*/
+
+.card .container {
+    display: flex;
+    background-color: rgb(37, 36, 36, 0.5);
+    justify-content: center;
+    width: 500px;
+    height: 680px;
+    margin: 50px 0px 0px 570px;
+    border: 5px solid rgb(30, 200, 255);
+    box-shadow: 0 0 25px #00eaff, inset 0 0 10px #00eaff;
+
+
+}
+
+#imgEstrelaMorte {
+    position: absolute;
+    margin-top: 200px;
+    width: 400px;
+}
+
+.camposCadastro {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.camposCadastro img {
+    width: 80%;
+    height: auto;
+    margin-left: 40px;
+}
+
+.camposCadastro h1 {
+    color: white;
+    font-size: 40px;
+    margin-bottom: 20%;
+}
+
+.campo {
+    display: flex;
+    margin-bottom: 60px;
+}
+
+.camposCadastro input {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(37, 36, 36, 0.5);
+    border: 5px solid rgb(30, 200, 255);
+    box-shadow: 0 0 5px #00eaff, 0 0 10px #00eaff;
+    border-radius: 3px;
+    outline: none;
+    color: white;
+
+
+}
+
+.camposCadastro input::placeholder {
+    color: white;
+    font-size: 20px;
+}
+
+.camposCadastro button {
+    font-size: 30px;
+    background-color: rgb(30, 200, 255, 0.5);
+    border: 5px solid rgb(30, 200, 255);
+    box-shadow: 0 0 5px #00eaff, 0 0 10px #00eaff;
+    border-radius: 3px;
+    color: white;
+}
+
+/*Tela de cadastro*/
+.card .container-cadastro {
+    display: flex;
+    background-color: rgba(14, 84, 108, 0.5);
+    justify-content: center;
+    width: 950px;
+    height: 680px;
+    margin: 50px 0px 0px 170px;
+    border: 5px solid rgb(30, 200, 255);
+    box-shadow: 0 0 25px #00eaff, inset 0 0 10px #00eaff;
+    margin-bottom: 30px;
+    border-radius: 20px;
+
+
+}
+
+
+.subcontainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.campo-cadastro {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.subcontainer img {
+    width: 50%;
+    height: auto;
+    margin-left: 25%;
+}
+
+.subcontainer h1 {
+    color: white;
+    font-size: 40px;
+    margin-bottom: 10%;
+    margin-left: 27%;
+}
+
+.campo {
+    display: flex;
+    margin-bottom: 60px;
+}
+
+.subcontainer input {
+    width: 250px;
+    height: 50px;
+    background-color: rgb(37, 36, 36, 0.5);
+    border: 5px solid rgb(30, 200, 255);
+    box-shadow: 0 0 5px #00eaff, 0 0 10px #00eaff;
+    border-radius: 10px;
+    outline: none;
+    color: white;
+
+
+}
+
+.subcontainer input::placeholder {
+    color: white;
+    font-size: 15px;
+    margin-left: 100px;
+}
+
+.subcontainer button {
+    width: 80%;
+    height: 20%;
+    background-color: rgb(30, 200, 255, 0.5);
+    border: 5px solid rgb(30, 200, 255);
+    box-shadow: 0 0 5px #00eaff, 0 0 10px #00eaff;
+    border-radius: 3px;
+    color: white;
+    font-size: 20px;
+    margin-left: 70px;
+
+}
+
+.botoes {
+    display: flex;
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
 }
