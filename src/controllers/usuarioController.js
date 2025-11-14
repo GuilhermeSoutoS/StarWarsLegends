@@ -56,9 +56,16 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
+    // var fkEmpresa = req.body.idEmpresaVincularServer;
     var cpf = req.body.cpfServer;
-    
+    var nomeUsuario = req.body.nomeUServer;
+    var dataNasc = req.body.dataNascServer;
+    var telefone = req.body.telefoneServer;
+    var rua = req.body.ruaServer;
+    var numero = req.body.numeroServer;
+    var complemento = req.body.complementoServer;
+    var bairro = req.body.bairroServer;
+
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -67,12 +74,26 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
+    } else if (cpf == undefined) {
+        res.status(400).send("Seu cpf está undefined!");
+    }else if (nomeUsuario == undefined) {
+        res.status(400).send("Seu nickname está undefined!");
+    }else if (dataNasc == undefined) {
+        res.status(400).send("Sua data de nascimento está undefined!");
+    }else if (telefone == undefined) {
+        res.status(400).send("Seu telefone está undefined!");
+    }else if (rua == undefined) {
+        res.status(400).send("Sua rua está undefined!");
+    }else if (numero == undefined) {
+        res.status(400).send("Seu numero está undefined!");
+    }else if (complemento == undefined) {
+        res.status(400).send("Seu complemento está undefined!");
+    }else if (bairro == undefined) {
+        res.status(400).send("Seu bairro está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
+        usuarioModel.cadastrar(nome, email, senha, cpf, nomeUsuario, dataNasc, telefone, rua, numero, complemento, bairro)
             .then(
                 function (resultado) {
                     res.json(resultado);
