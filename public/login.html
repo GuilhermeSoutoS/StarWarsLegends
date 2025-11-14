@@ -1,85 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Login</title>
-
     <script src="./js/sessao.js"></script>
-
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="img" href="assets/img/logo.png">
+    <title>Login</title>
 </head>
 
 <body>
-
-    <!--Header-->
-
-    <div class="header">
+    <!-- <div class="header">
         <div class="container">
-            <h1 class="titulo">AquaTech</h1>
+            <img src="./assets/img/logo.png" alt="">
             <ul class="navbar">
                 <li>
-                    <a href="index.html">Inicial</a>
+                    <p>Inicio</p>
                 </li>
                 <li>
-                    <a href="simulador.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="#">Login</a>
+                    <p>Jogos</p>
                 </li>
                 <li>
-                    <a href="cadastro.html">Cadastro</a>
+                    <p>Sobre mim</p>
+                </li>
+                <li>
+                    <div class="loginInicio">
+
+                        <p>Login</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="cadastroInicio">
+
+                        <p>Cadastro</p>
+                    </div>
                 </li>
             </ul>
         </div>
-    </div>
+    </div>-->
+    <div class="card">
+        <img src="./assets/img/estreladamorte.png" id="imgEstrelaMorte">
+        <!-- <div class="tenor-gif-embed" data-postid="20589431" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/death-star-spin-star-wars-loop-death-star-plans-gif-20589431">Death Star Spin GIF</a>from <a href="https://tenor.com/search/death+star-gifs">Death Star GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>-->
+        <div class="container">
+            <div class="camposCadastro">
+                <img src="./assets/img/logoholograma.png" alt="">
+                <h1>Terminal holograma</h1>
+                <div class="campo">
 
+                    <input type="text" id="input_email" placeholder="Insira seu email"><br>
+                </div>
+                <div class="campo">
 
-    <div class="login">
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
+                    <input type="text" id="input_senha" placeholder="Insira sua senha"><br>
+                </div>
+                <button onclick="entrar()">Entrar</button>
             </div>
         </div>
-        <div class="container">
-            <div class="card card-login">
-                <h2>Olá de volta!</h2>
-                <div class="formulario">
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
-                    </div>
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
-                    </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
-                </div>
-
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
-
-                <div id="div_erros_login"></div>
-            </div>
-        </div>
+        <!--   <img src="./assets/img/holograma.png" style="margin-left: 250px;" alt="">-->
     </div>
-
-    <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-            <span class="version">v1.0.0</span>
-        </div>
-    </div>
-    <!--footer fim-->
-
 </body>
 
 </html>
@@ -88,19 +67,18 @@
 
 
     function entrar() {
-        aguardar();
+        
 
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            alert('Erro')
             finalizarAguardar();
             return false;
         }
         else {
-            setInterval(sumirMensagem, 5000)
+            setInterval(5000)
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -127,7 +105,6 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
@@ -151,9 +128,9 @@
 
         return false;
     }
-
+/*
     function sumirMensagem() {
         cardErro.style.display = "none"
-    }
+    }*/
 
 </script>
