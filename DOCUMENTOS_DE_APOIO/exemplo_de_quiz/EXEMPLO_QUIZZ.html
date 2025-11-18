@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemplo - Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="quiz.css">
 </head>
 
 
 <body onload="onloadEsconder()">
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
-
+        <!--
         <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
                 <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
@@ -24,7 +24,7 @@
                 </span>
                 <span id="msgFinal" class="width-fit-content">***</span>
             </div>
-        </div>
+        </div>-->
 
         <div id="jogo" class="width-fit-content flex-colunar border-secondary">
 
@@ -73,7 +73,7 @@
 
 </html>
 <script>
-    const listaDeQuestoes = [
+    var listaDeQuestoes = [
 
         {
             pergunta: "Qual mês tem 30 dias?",
@@ -105,15 +105,15 @@
     ]
 
     // variáveis globais    
-    let numeroDaQuestaoAtual = 0
-    let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
-    let quantidadeDeQuestoes = listaDeQuestoes.length
-    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+    var numeroDaQuestaoAtual = 0
+    var pontuacaoFinal = 0
+    var tentativaIncorreta = 0
+    var certas = 0
+    var erradas = 0
+    var quantidadeDeQuestoes = listaDeQuestoes.length
+    // var isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
-    function onloadEsconder() {
+    /*function onloadEsconder() {
         document.getElementById('pontuacao').style.display = "none"
         document.getElementById('jogo').style.display = "none"
     }
@@ -131,7 +131,7 @@
         btnProx.disabled = true
         // btnConcluir.disabled = true
         btnTentarNovamente.disabled = true
-    }
+    }*/
 
     function preencherHTMLcomQuestaoAtual(index) {
         habilitarAlternativas(true)
@@ -150,8 +150,8 @@
     function submeter() {
         const options = document.getElementsByName("option"); // recupera alternativas no html
 
-        let hasChecked = false
-        for (let i = 0; i < options.length; i++) {
+        var hasChecked = false
+        for (var i = 0; i < options.length; i++) {
             if (options[i].checked) {
                 hasChecked = true
                 break
@@ -171,7 +171,7 @@
     }
 
     function habilitarAlternativas(trueOrFalse) {
-        let opcaoEscolhida = trueOrFalse ? false : true
+        var opcaoEscolhida = trueOrFalse ? false : true
 
         primeiraOpcao.disabled = opcaoEscolhida
         segundaOpcao.disabled = opcaoEscolhida
@@ -203,12 +203,12 @@
     }
 
     function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+        var questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+        var respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
 
-        const options = document.getElementsByName("option"); // recupera alternativas no html
+        var options = document.getElementsByName("option"); // recupera alternativas no html
 
-        let alternativaCorreta = null // variável para armazenar a alternativa correta
+        var alternativaCorreta = null // variável para armazenar a alternativa correta
 
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
@@ -226,7 +226,7 @@
                 document.getElementById("spanCertas").innerHTML = certas
                 numeroDaQuestaoAtual++
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                const wrongLabelId = option.labels[0].id
+                var wrongLabelId = option.labels[0].id
 
                 document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
                 document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
@@ -239,7 +239,7 @@
     }
 
     function limparCoresBackgroundOpcoes() {
-        const options = document.getElementsByName("option");
+        var options = document.getElementsByName("option");
         options.forEach((option) => {
             document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
             document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
@@ -247,16 +247,16 @@
     }
 
     function desmarcarRadioButtons() {
-        const options = document.getElementsByName("option");
-        for (let i = 0; i < options.length; i++) {
+        var options = document.getElementsByName("option");
+        for (var i = 0; i < options.length; i++) {
             options[i].checked = false;
         }
     }
 
     function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+        var textoParaMensagemFinal = null
+        var classComCoresParaMensagemFinal = null
+        var porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
         if (porcentagemFinalDeAcertos <= 0.3) {
             textoParaMensagemFinal = "Parece que você não estudou..."

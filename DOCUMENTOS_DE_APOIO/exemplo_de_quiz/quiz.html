@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="quize.css">
+  <link rel="img" href="./assets/img/logo.png">
+  <title>Cadastro</title>
+</head>
+
+<body>
+
+  <div class="quiz">
+    <div class="container" id="container1">
+      <h1>Descubra de qual lado esta!</h1>
+      <div class="pergunta">
+        <label for="pergunta" id="spanQuestaoExibida"></label>
+      </div>
+      <div class="opcoes">
+        <div class="opcao">
+          <input type="radio" name="respostas" id="primeiraOpcao">
+          <label for="primeiraOpcao" id="labelOpcaoUm"></label>
+        </div>
+        <div class="opcao">
+          <input type="radio" name="respostas" id="segundaOpcao">
+          <label for="segundaOpcao" id="labelOpcaoDois"></label>
+        </div>
+        <div class="opcao">
+          <input type="radio" name="respostas" id="terceiraOpcao">
+          <label for="terceiraOpcao" id="labelOpcaoTres"></label>
+        </div>
+        <div class="opcao">
+          <input type="radio" name="respostas" id="quartaOpcao">
+          <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
+        </div>
+      </div>
+      <button onclick="avancar()">Avançar</button>
+    </div>
+    <div id="container2" class="container" style="display: none;">
+
+      <div id="div_resultadoruim" style="display: none;">
+        <h1>Eita! Voce é um Sith!</h1>
+        <p>Voce está do lado negro da força...</p>
+      </div>
+      <div id="div_resultadobom" style="display: none;">
+        <h1>Ufa! Voce é um jedi</h1>
+        <p>Voce está do lado bom da força :D</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  var listaDeQuestoes = [
+
+    {
+      pergunta: "Qual seu personagem favorito?",
+      alternativaA: "Darth Vader",
+      alternativaB: "Luke Skywalker",
+      alternativaC: "Yoda",
+      alternativaD: "R2D2",
+      alternativaCorreta: "Han Solo"
+    },
+
+    {
+      pergunta: "Quantas horas tem em um dia?",
+      alternativaA: "30 horas",
+      alternativaB: "38 horas",
+      alternativaC: "48 horas",
+      alternativaD: "24 horas",
+      alternativaCorreta: "alternativaD"
+    },
+
+    {
+      pergunta: "Qual destes números é ímpar?",
+      alternativaA: "Dez",
+      alternativaB: "Doze",
+      alternativaC: "Oito",
+      alternativaD: "Onze",
+      alternativaCorreta: "alternativaD"
+    }
+
+  ]
+
+  preencherHTMLcomQuestaoAtual(0);
+
+  var pontuacao = 0;
+  var numeroDaQuestaoAtual = 0;
+  var quantidadeDeQuestoes = listaDeQuestoes.length;
+  function avancar() {
+    var selecionado = ''
+    var opcoes = document.getElementsByName("respostas");
+    var hasChecked = false
+    for (var i = 0; i < opcoes.length; i++) {
+      if (opcoes[i].checked) {
+        hasChecked = true
+        selecionado = i;
+        break
+      }
+
+    }
+
+    if (!hasChecked) {
+      alert("Não há alternativas escolhidas. Escolha uma opção.")
+      return
+    }
+
+    if (selecionado == 0) {
+      pontuacao += 5;
+    } else if (selecionado == 1) {
+      pontuacao += 10;
+    } else if (selecionado == 2) {
+      pontuacao += 13;
+    } else if (selecionado == 3) {
+      pontuacao += 20;
+    }
+
+    for (var i = 0; i < opcoes.length; i++) {
+      opcoes[i].checked = false;
+    }
+    numeroDaQuestaoAtual++;
+
+    if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+      preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+    }else{
+
+      if (pontuacao >= 40) {
+        container1.style.display = 'none'
+        container2.style.display = 'flex'
+        div_resultadoruim.style.display = 'flex'
+      } else{
+        container1.style.display = 'none'
+        container2.style.display = 'flex'
+        div_resultadobom.style.display = 'flex'
+      }
+    }
+
+  }
+
+  function preencherHTMLcomQuestaoAtual(index) {
+    const questaoAtual = listaDeQuestoes[index];
+
+    document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+    document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+    document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+    document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+    document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+  }
+
+</script>
