@@ -15,6 +15,7 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
+var quiz = require("./src/routes/quiz");
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
@@ -34,6 +35,8 @@ app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
+app.use("/quiz", quizRouter);
+
 
 app.listen(PORTA_APP, function () {
     console.log(`
