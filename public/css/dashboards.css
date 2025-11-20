@@ -144,3 +144,10 @@ canvas {
   margin-left: 50px;
   font-weight: bold;
 }
+
+.grafico{
+  width: 300px;
+  height: auto;
+  margin-left: 800px;
+  margin-top: 50px;
+}
