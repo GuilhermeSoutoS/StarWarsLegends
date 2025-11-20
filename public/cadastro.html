@@ -137,7 +137,7 @@
     var cpf = input_cpf.value;
     var telefone = input_telefone.value;
 
-    if (nome == '' || email == '' || telefone == '' || cpf == '' || nomeUsuario == '' || dataNasc == '') {
+    if (nome == '' || email == '' || telefone == '' || nomeUsuario == '' || dataNasc == '') {
       alert('Preencha as informações corretamente.')
     } else {
 
@@ -161,19 +161,15 @@
     var nomeUsuario = input_nomeUsuario.value;
     var dataNasc = input_dataNasc.value;
     var email = input_email.value;
-    var cpf = input_cpf.value;
     var telefone = input_telefone.value;
     var rua = input_rua.value;
-    var numero = input_numero.value;
-    var complemento = input_complemento.value;
     var senha = input_senha.value;
     var senhaConf = input_senhaConf.value;
-    var bairro = input_bairro.value;
     // var codigoVar = codigo_input.value;
     // var idEmpresaVincular
 
     // Verificando se há algum campo em branco
-    if (rua == "" || bairro == '' || senhaConf == "" || senha == '' || numero == '' || complemento == '') {
+    if (senhaConf == "" || senha == '') {
       alert = ('Preencha as informações corretamente.');
 
      
@@ -211,12 +207,7 @@
         senhaServer: senha,
         nomeUServer: nomeUsuario,
         dataNascServer: dataNasc,
-        cpfServer: cpf,
         telefoneServer: telefone,
-        ruaServer: rua,
-        numeroServer: numero,
-        complementoServer: complemento,
-        bairroServer: bairro
 
       }),
     })

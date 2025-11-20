@@ -3,13 +3,17 @@ var router = express.Router();
 var quizController = require("../controllers/quizController");
 
 router.post("/cadastrar", function (req, res) {
-    // função a ser chamada quando acessar /carros/cadastrar
+    // função a ser chamada quando acessar /quiz/cadastrar
     quizController.cadastrar(req, res);
 });
 
 router.get("/listar", function (req, res) {
-    // função a ser chamada quando acessar /carros/listar
+    // função a ser chamada quando acessar /quiz/listar
     quizController.listar(req, res);
+});
+
+router.get("/contagem", function (req, res) {
+    quizController.contagem(req, res);
 });
 
 module.exports = router;

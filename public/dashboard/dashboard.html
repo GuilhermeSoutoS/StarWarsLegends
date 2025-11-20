@@ -10,9 +10,8 @@
 
     
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+    <!-- <link rel="stylesheet" href="./../css/estilo.css" /> -->
     <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -51,8 +50,8 @@
             </div>
 
             <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
+                <a href="../quiz.html">
+                    <h3>Quiz</h3>
                 </a>
             </div>
 
@@ -89,46 +88,46 @@
 </html>
 
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = sessionStorage.nomeUsuario;
 
     let proximaAtualizacao;
 
     window.onload = exibirAquariosDoUsuario();
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
+    // function exibirAquariosDoUsuario() {
+    //     var aquarios = JSON.parse(sessionStorage.AQUARIOS);
+    //     aquarios.forEach(item => {
+    //         document.getElementById("btnAquario").innerHTML += `
+    //         <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
+    //         `
 
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
+    //         document.getElementById("graficos").innerHTML += `
+    //             <div id="grafico${item.id}" class="display-none">
+    //                 <h3 class="tituloGraficos">
+    //                     <span id="tituloAquario${item.id}">${item.descricao}</span>
+    //                 </h3>
+    //                 <div class="graph">
+    //                     <canvas id="myChartCanvas${item.id}"></canvas>
+    //                 </div>
+    //                 <div class="label-captura">
+    //                     <p id="avisoCaptura${item.id}" style="color: white"></p>
+    //                 </div>
+    //             </div>
+    //         `
 
-            obterDadosGrafico(item.id)
-        });
+    //         obterDadosGrafico(item.id)
+    //     });
 
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
-        }
-    }
+    //     if (aquarios.length > 0) {
+    //         exibirAquario(aquarios[0].id)
+    //     }
+    // }
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    }
+    // function alterarTitulo(idAquario) {
+    //     var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
+    //     var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
+    //     tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
+    // }
 
     function exibirAquario(idAquario) {
         let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
@@ -173,21 +172,21 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
+    function obterDadosGrafico(idQuiz) {
 
-        alterarTitulo(idAquario)
+        alterarTitulo(idUsuario)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/quiz/contagem`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, idAquario);
+                    plotarGrafico(resposta, idQuiz);
 
                 });
             } else {
@@ -202,7 +201,7 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
+    function plotarGrafico(resposta, idQuiz) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -218,14 +217,16 @@
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
-            },
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
+            // },
+            // {
+            //     label: 'Temperatura',
+            //     data: [],
+            //     fill: false,
+            //     borderColor: 'rgb(199, 52, 52)',
+            //     tension: 0.1
+            // 
+            }
+            ]
         };
 
         console.log('----------------------------------------------')
@@ -236,8 +237,8 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
+            dados.datasets[0].data.push(registro.lado_forca);
+            dados.datasets[1].data.push(registro.lado_forca);
         }
 
         console.log('----------------------------------------------')
@@ -273,18 +274,18 @@
 
 
 
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/quiz/contagem`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    obterdados(idAquario);
+                    obterdados;
                     // alertar(novoRegistro, idAquario);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                    avisoCaptura.innerHTML = ""
+                    // let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
+                    // avisoCaptura.innerHTML = ""
 
 
                     if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {

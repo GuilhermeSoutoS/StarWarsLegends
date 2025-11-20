@@ -21,8 +21,14 @@ select * from usuario;
 
 create table quiz(
 id INT primary key auto_increment,
-fkusuario INT,
-dataResultado DATE,
-lado_forca VARCHAR(10)
-CONSTRAINT chk_lado_forca (CHECK lado_forca IN ('lado_negro','lado-bom'))
+fkUsuario INT,
+dataResultado DATETIME DEFAULT current_timestamp,
+lado_forca tinyint NOT NULL,
+constraint chkFkusuarioQuiz
+	foreign key(fkUsuario) references usuario(id)
 );
+
+insert into quiz (fkUsuario, dataResultado, lado_forca)values
+(1, '2025-01-01, 1'),
+(2, '2025-01-02, 1'),
+(3, '2025-01-03, 0'),

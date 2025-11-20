@@ -58,14 +58,14 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     // var fkEmpresa = req.body.idEmpresaVincularServer;
-    var cpf = req.body.cpfServer;
+    // var cpf = req.body.cpfServer;
     var nomeUsuario = req.body.nomeUServer;
     var dataNasc = req.body.dataNascServer;
     var telefone = req.body.telefoneServer;
-    var rua = req.body.ruaServer;
-    var numero = req.body.numeroServer;
-    var complemento = req.body.complementoServer;
-    var bairro = req.body.bairroServer;
+    // var rua = req.body.ruaServer;
+    // var numero = req.body.numeroServer;
+    // var complemento = req.body.complementoServer;
+    // var bairro = req.body.bairroServer;
 
 
     // Faça as validações dos valores

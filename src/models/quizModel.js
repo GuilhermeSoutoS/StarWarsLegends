@@ -1,22 +1,38 @@
 var database = require("../database/config")
 
-function listar(idQuiz) {
+function listar() {
     var instrucao = `
-        SELECT * FROM carro;
+        SELECT * FROM quiz;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function cadastrar(nome) {
+function cadastrar(idUsuario, lado_forca) {
     var instrucao = `
-        INSERT INTO carro (nome) VALUES ('${nome}');
-    `;
+       INSERT INTO quiz (fkUsuario, lado_forca)
+        VALUES (${idUsuario}, ${lado_forca});
+        `;
     console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
+
+function contagem() {
+    var instrucao = `
+        SELECT 
+            lado_forca,
+            COUNT(*) AS total
+        FROM quiz
+        GROUP BY lado_forca;
+    `;
+    console.log("Executando SQL: " + instrucao);
     return database.executar(instrucao);
 }
 
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    contagem
 };

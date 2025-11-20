@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="quize.css">
+  <link rel="stylesheet" href="./css/quize.css">
   <link rel="img" href="./assets/img/logo.png">
   <title>Cadastro</title>
 </head>
@@ -90,7 +90,10 @@
   var pontuacao = 0;
   var numeroDaQuestaoAtual = 0;
   var quantidadeDeQuestoes = listaDeQuestoes.length;
+  var lado = 0
   function avancar() {
+    let idUsuario = sessionStorage.ID_USUARIO;
+    
     var selecionado = ''
     var opcoes = document.getElementsByName("respostas");
     var hasChecked = false
@@ -125,20 +128,60 @@
 
     if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
       preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+      return;
     }else{
 
       if (pontuacao >= 40) {
         container1.style.display = 'none'
         container2.style.display = 'flex'
         div_resultadoruim.style.display = 'flex'
+        lado = 1
+      
       } else{
         container1.style.display = 'none'
         container2.style.display = 'flex'
         div_resultadobom.style.display = 'flex'
+        lado = 0
       }
+
+      fetch("/quiz/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        idUsuarioServer: idUsuario,
+        ladoServer: lado
+
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          alert("Quiz finalizado1.");
+
+          setTimeout(() => {
+            window.location = "dashboard.html";
+          }, "2000");
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  } 
     }
 
-  }
+
 
   function preencherHTMLcomQuestaoAtual(index) {
     const questaoAtual = listaDeQuestoes[index];
