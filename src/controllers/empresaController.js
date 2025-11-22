@@ -1,32 +1,32 @@
 var empresaModel = require("../models/empresaModel");
 
-function buscarPorCnpj(req, res) {
+function buscarPorCnpj1(req, res) {
   var cnpj = req.query.cnpj;
 
-  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
+  empresaModel.buscarPorCnpj1(cnpj).then((resultado) => {
     res.status(200).json(resultado);
   });
 }
 
-function listar(req, res) {
+function listar1(req, res) {
   empresaModel.listar().then((resultado) => {
     res.status(200).json(resultado);
   });
 }
 
-function buscarPorId(req, res) {
+function buscarPorId1(req, res) {
   var id = req.params.id;
 
-  empresaModel.buscarPorId(id).then((resultado) => {
+  empresaModel.buscarPorId1(id).then((resultado) => {
     res.status(200).json(resultado);
   });
 }
 
-function cadastrar(req, res) {
+function cadastrar1(req, res) {
   var cnpj = req.body.cnpj;
   var razaoSocial = req.body.razaoSocial;
 
-  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
+  empresaModel.buscarPorCnpj1(cnpj).then((resultado) => {
     if (resultado.length > 0) {
       res
         .status(401)
@@ -40,8 +40,8 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-  buscarPorCnpj,
-  buscarPorId,
-  cadastrar,
-  listar,
+  buscarPorCnpj1,
+  buscarPorId1,
+  cadastrar1,
+  listar1,
 };

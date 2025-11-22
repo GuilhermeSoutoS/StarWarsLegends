@@ -1,4 +1,5 @@
 var quizModel = require("../models/quizModel");
+// const { cadastrar } = require("./usuarioController");
 
 function listar(req, res) {
     quizModel.listar().then(function (resultado) {
@@ -9,7 +10,7 @@ function listar(req, res) {
     })
 }
 
-function cadastrar(req, res) {
+function registrar(req, res) {
     var id_usuario = req.body.idUsuarioServer;
     var lado_forca = req.body.ladoServer;
 
@@ -19,7 +20,7 @@ function cadastrar(req, res) {
        return res.status(400).send("lado_forca está undefined!");
     }
 
-    quizModel.cadastrar(id_usuario, lado_forca).then(function (resposta) {
+    quizModel.registrar(id_usuario, lado_forca).then(function (resposta) {
         res.status(200).send("Quiz finalizado com sucesso!");
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -37,6 +38,7 @@ function contagem(req, res) {
 
 module.exports = {
     listar,
-    cadastrar,
+    registrar,
+    // cadastrar,
     contagem
 }

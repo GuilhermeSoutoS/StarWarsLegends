@@ -8,7 +8,7 @@ function buscarAquariosPorEmpresa(empresaId) {
   return database.executar(instrucaoSql);
 }
 
-function cadastrar(empresaId, descricao) {
+function cadastrar2(empresaId, descricao) {
   
   var instrucaoSql = `INSERT INTO (descricao, fk_empresa) aquario VALUES (${descricao}, ${empresaId})`;
 
@@ -19,5 +19,5 @@ function cadastrar(empresaId, descricao) {
 
 module.exports = {
   buscarAquariosPorEmpresa,
-  cadastrar
+  cadastrar2
 }

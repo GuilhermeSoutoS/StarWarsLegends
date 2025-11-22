@@ -24,7 +24,7 @@
 
 <!-- <body onload=" atualizarFeed()"> -->
 
-<body onload="obterDadosGrafico()">
+<body onload="iniciar()">
 
     <div class="janela">
         <div class="header-left">
@@ -35,8 +35,8 @@
             </div>
 
             <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
+                <!-- <a href="./cards.html"> -->
+                <h3>Aquários</h3>
                 </a>
             </div>
 
@@ -62,13 +62,13 @@
     <div class="dash">
         <div class="kpis">
             <div class="kpi">
-                <p>top</p>
+                <span id="kpiLN">a</span>
             </div>
             <div class="kpi">
-                <p>top</p>
+                <span id="kpiLB">a</span>
             </div>
             <div class="kpi">
-                <p>top</p>
+                <span id="kpiU">a</span>
             </div>
         </div>
 
@@ -86,7 +86,8 @@
 </html>
 
 <script>
-    b_usuario.innerHTML = sessionStorage.nomeUsuario;
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    // let lado_forca = sessionStorage.LADO_FORCA;
 
     let proximaAtualizacao;
 
@@ -170,6 +171,78 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
+
+    function iniciar() {
+        carregarKpi();
+        obterDadosGrafico();
+        buscarLadoForca();
+    }
+
+
+    function buscarLadoForca() {
+        let id_usuario = sessionStorage.ID_USUARIO;
+
+        fetch(`/resultadoQuiz/resultado/${id_usuario}`, { cache: 'no-store' }).then(function (response) {
+
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log('chegou aqui')
+
+                    var lado = resposta[0].lado_forca;
+
+                    if (lado == 1) {
+                        document.body.style.background = "#d3f0ff"; // luz
+                    }
+                    else if (lado == 0) {
+                        document.body.style.background = "#1b1b1b"; // sombra
+                    }
+                    else {
+                        document.body.style.background = "#888"; // não respondeu
+                    }
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API cor da dash');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
+            });
+    }
+
+    function carregarKpi() {
+        fetch(`/kpi/exibir`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log('chegou aqui')
+
+                    document.getElementById("kpiLN").innerHTML = ` Lado Negro: <b>${resposta.sith}</b>`;
+
+                    document.getElementById("kpiLB").innerHTML = ` Lado Luz: <b>${resposta.jedi}</b>`;
+
+                    if (resposta.universo_Em_Perigo) {
+                        document.getElementById("kpiU").innerHTML =
+                            ` Universo Seguro`;
+
+                        document.getElementById("kpiU").style.background = "#2ecc71";
+                    } else {
+                        document.getElementById("kpiU").innerHTML =
+                            ` Universo em Perigo!`;
+                        document.getElementById("kpiU").style.background = "#ff3b3b";
+                    }
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API KPI');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
+            });
+    }
+
     function obterDadosGrafico() {
 
         //alterarTitulo(lado_forca)
@@ -205,8 +278,20 @@
         // Criando estrutura para plotar gráfico - labels
         let labels = ['Jedi', 'Sith'];
 
-        const totalJedi = resposta.find(r => Number(r.lado_forca) === 0)?.total || 0;
-        const totalSith = resposta.find(r => Number(r.lado_forca) === 1)?.total || 0;
+        let totalJedi = 0;
+        let totalSith = 0;
+
+        for (let i = 0; i < resposta.length; i++) {
+            let item = resposta[i];
+
+            if (Number(item.lado_forca) === 0) {
+                totalJedi = item.total;
+            }
+
+            if (Number(item.lado_forca) === 1) {
+                totalSith = item.total;
+            }
+        }
 
         // Criando estrutura para plotar gráfico - dados
         let dados = {
@@ -215,17 +300,17 @@
                 label: 'Quantidade',
                 data: [totalJedi, totalSith],
                 fill: false,
-                backgroundColor: ['#a22f2f', '#1c6b35'],
+                backgroundColor: ['#1c6b35', '#a22f2f'],
                 borderColor: ['#00A8FF', '#e6005a'],
                 tension: 0.1
             }
-            // {
-            //     label: 'Lado negro',
-            //     data: [2, 4],
-            //     fill: false,
-            //     borderColor: 'rgb(199, 52, 52)',
-            //     tension: 0.1
-            // }
+                // {
+                //     label: 'Lado negro',
+                //     data: [2, 4],
+                //     fill: false,
+                //     borderColor: 'rgb(199, 52, 52)',
+                //     tension: 0.1
+                // }
             ]
         };
 
@@ -261,7 +346,7 @@
             config
         );
 
-       proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
     }
 
 
@@ -278,7 +363,7 @@
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    obterDadosGrafico();
+                    //obterDadosGrafico();
                     // alertar(novoRegistro, idAquario);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
@@ -312,7 +397,7 @@
                     // }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(lado_forca, dados, myChart), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');

@@ -31,4 +31,22 @@ constraint chkFkusuarioQuiz
 insert into quiz (fkUsuario, dataResultado, lado_forca)values
 (1, '2025-01-01, 1'),
 (2, '2025-01-02, 1'),
-(3, '2025-01-03, 0'),
+(3, '2025-01-03, 0');
+
+SELECT 
+            lado_forca,
+            COUNT(*) AS total
+        FROM quiz
+        GROUP BY lado_forca;
+        
+        
+SELECT 
+    SUM(CASE WHEN lado_forca = '0' 
+    THEN 1 
+    ELSE 0 end) AS qtde_negro,
+    SUM(CASE WHEN lado_forca = '1' THEN 1 ELSE 0 END) AS qtde_luz
+FROM quiz;
+
+select 
+	sum(lado_forca = 0)
+show tables

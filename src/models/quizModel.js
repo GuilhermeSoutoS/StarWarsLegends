@@ -8,7 +8,7 @@ function listar() {
     return database.executar(instrucao);
 }
 
-function cadastrar(idUsuario, lado_forca) {
+function registrar(idUsuario, lado_forca) {
     var instrucao = `
        INSERT INTO quiz (fkUsuario, lado_forca)
         VALUES (${idUsuario}, ${lado_forca});
@@ -31,8 +31,10 @@ function contagem() {
     return database.executar(instrucao);
 }
 
+
+
 module.exports = {
-    cadastrar,
+    registrar,
     listar,
-    contagem
+    contagem,
 };

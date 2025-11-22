@@ -6,10 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/quize.css">
   <link rel="img" href="./assets/img/logo.png">
-  <title>Cadastro</title>
+  
+  <title>Quiz</title>
 </head>
 
 <body>
+  <div class="janela">
+        <div class="header-left">
+            <h1>Star Forum</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <!-- <a href="./cards.html"> -->
+                <h3>Aquários</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+
+                <h3>Gráficos</h3>
+
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="../quiz.html">
+                    <h3>Quiz</h3>
+                </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+    </div>
 
   <div class="quiz">
     <div class="container" id="container1">
@@ -18,7 +52,7 @@
         <label for="pergunta" id="spanQuestaoExibida"></label>
       </div>
       <div class="opcoes">
-        <div class="opcao">
+        <div class="opcao" onclick="selecionada()">
           <input type="radio" name="respostas" id="primeiraOpcao">
           <label for="primeiraOpcao" id="labelOpcaoUm"></label>
         </div>
@@ -42,11 +76,13 @@
       <div id="div_resultadoruim" style="display: none;">
         <h1>Eita! Voce é um Sith!</h1>
         <p>Voce está do lado negro da força...</p>
+        <button onclick="voltar()">Voltar para dash</button>
       </div>
       <div id="div_resultadobom" style="display: none;">
         <h1>Ufa! Voce é um jedi</h1>
         <p>Voce está do lado bom da força :D</p>
       </div>
+  
     </div>
   </div>
 </body>
@@ -54,6 +90,8 @@
 </html>
 
 <script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
   var listaDeQuestoes = [
 
     {
@@ -91,9 +129,11 @@
   var numeroDaQuestaoAtual = 0;
   var quantidadeDeQuestoes = listaDeQuestoes.length;
   var lado = 0
+
+
   function avancar() {
     let idUsuario = sessionStorage.ID_USUARIO;
-    
+
     var selecionado = ''
     var opcoes = document.getElementsByName("respostas");
     var hasChecked = false
@@ -129,57 +169,56 @@
     if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
       preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
       return;
-    }else{
+    } else {
 
       if (pontuacao >= 40) {
         container1.style.display = 'none'
         container2.style.display = 'flex'
         div_resultadoruim.style.display = 'flex'
         lado = 1
-      
-      } else{
+
+      } else {
         container1.style.display = 'none'
         container2.style.display = 'flex'
         div_resultadobom.style.display = 'flex'
         lado = 0
       }
 
-      fetch("/quiz/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        idUsuarioServer: idUsuario,
-        ladoServer: lado
+      fetch("/quiz/registrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          idUsuarioServer: idUsuario,
+          ladoServer: lado
 
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          alert("Quiz finalizado1.");
-
-          setTimeout(() => {
-            window.location = "dashboard.html";
-          }, "2000");
-
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+        }),
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
 
-    return false;
-  } 
+          if (resposta.ok) {
+             // cardErro.style.display = "block";
+
+            alert("Quiz finalizado1.");
+
+            setTimeout(() => {
+              window.location = "./dashboard/dashboard.html";
+            }, "2000");
+
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
+
+      return false;
     }
+  }
 
 
 
@@ -193,4 +232,8 @@
     document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
   }
 
+
+  function voltar() {
+    window.location.href = './dashboard/dashboard.html'
+  }
 </script>

@@ -17,7 +17,7 @@ function buscarAquariosPorEmpresa(req, res) {
 }
 
 
-function cadastrar(req, res) {
+function cadastrar2(req, res) {
   var descricao = req.body.descricao;
   var idUsuario = req.body.idUsuario;
 
@@ -28,7 +28,7 @@ function cadastrar(req, res) {
   } else {
 
 
-    aquarioModel.cadastrar(descricao, idUsuario)
+    aquarioModel.cadastrar2(descricao, idUsuario)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
@@ -45,5 +45,5 @@ function cadastrar(req, res) {
 
 module.exports = {
   buscarAquariosPorEmpresa,
-  cadastrar
+  cadastrar2
 }

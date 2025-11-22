@@ -1,6 +1,6 @@
 var avisoModel = require("../models/avisoModel");
 
-function listar(req, res) {
+function listar2(req, res) {
     avisoModel.listar().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -127,7 +127,7 @@ function deletar(req, res) {
 }
 
 module.exports = {
-    listar,
+    listar2,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
