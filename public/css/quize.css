@@ -120,12 +120,12 @@ canvas {
 .quiz {
   display: flex;
   justify-content: center;
-  margin-top: 70px;
+  margin-top: 60px;
 }
 
 .quiz .container {
   width: 600px;
-  height: 450px;
+  height: 470px;
   background-color: rgba(16, 104, 133, 0.5);
   border: 4px solid rgb(68, 68, 143);
   display: flex;
@@ -154,9 +154,16 @@ canvas {
   justify-content: flex-start;
   flex-direction: column;
   gap: 20px;
-  margin-top: 30px;
+  margin-top: 20px;
+  
 }
 
+.quiz h1 {
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 20px #00aaff, 0 0 40px #0088ff;
+    font-size: 40px;
+}
 
 .opcao {
   display: flex;
@@ -168,7 +175,7 @@ canvas {
   height: 40px;
   border-radius: 10px;
   border: 2px solid rgb(110, 133, 167);
-  
+
 }
 
 .opcao:hover {
@@ -179,7 +186,7 @@ canvas {
 
 }
 
-.opcao.selecionada{
+.opcao.selecionada {
   background-color: rgba(16, 104, 133, 0.5);
 }
 
@@ -188,6 +195,24 @@ canvas {
   height: auto;
 }
 
-label{
+label {
   color: white;
+  font-size: 28px;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
+
+.quiz button{
+    width: 60%;
+    font-size: 20px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    background: rgba(255,255,255,0.8);
+    transition: 0.3s;
+}
+
+button:hover {
+    background: white;
+    box-shadow: 0 0 20px white;
+}
+

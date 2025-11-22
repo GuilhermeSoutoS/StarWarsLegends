@@ -6,44 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/quize.css">
   <link rel="img" href="./assets/img/logo.png">
-  
+
   <title>Quiz</title>
 </head>
 
 <body>
   <div class="janela">
-        <div class="header-left">
-            <h1>Star Forum</h1>
+    <div class="header-left">
+      <h1>Star Forum</h1>
 
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
+      <div class="hello">
+        <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+      </div>
 
-            <div class="btn-nav-white">
-                <!-- <a href="./cards.html"> -->
-                <h3>Aquários</h3>
-                </a>
-            </div>
+      <div class="btn-nav-white">
+        <!-- <a href="./cards.html"> -->
+        <h3>Aquários</h3>
+        </a>
+      </div>
 
-            <div class="btn-nav">
+      <div class="btn-nav">
+        <a href="./dashboard/dashboard.html">
+          <h3>Gráficos</h3>
+        </a>
+      </div>
 
-                <h3>Gráficos</h3>
+      <div class="btn-nav-white">
+        <a href="../quiz.html">
+          <h3>Quiz</h3>
+        </a>
+      </div>
 
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="../quiz.html">
-                    <h3>Quiz</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
+      <div class="btn-logout" onclick="sair()">
+        <h3>Sair</h3>
+      </div>
 
     </div>
+
+  </div>
 
   <div class="quiz">
     <div class="container" id="container1">
@@ -82,7 +82,7 @@
         <h1>Ufa! Voce é um jedi</h1>
         <p>Voce está do lado bom da força :D</p>
       </div>
-  
+
     </div>
   </div>
 </body>
@@ -90,7 +90,7 @@
 </html>
 
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
   var listaDeQuestoes = [
 
@@ -135,7 +135,7 @@
     // Tirar a seleção da outra
     var anterior = document.querySelector(".selecionada");
     if (anterior) {
-        anterior.classList.remove("selecionada");
+      anterior.classList.remove("selecionada");
     }
 
     // Marcar seleção na div clicada
@@ -144,7 +144,7 @@
     // Marcar o input como selecionado
     var radio = divOpcao.querySelector("input");
     radio.checked = true;
-}
+  }
 
 
   function avancar() {
@@ -185,7 +185,7 @@
 
     if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
       preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-      limparCoresBackgroundOpcoes(); 
+      limparCoresBackgroundOpcoes();
       return;
     } else {
 
@@ -218,7 +218,7 @@
           console.log("resposta: ", resposta);
 
           if (resposta.ok) {
-             // cardErro.style.display = "block";
+            // cardErro.style.display = "block";
 
             alert("Quiz finalizado1.");
 
@@ -254,17 +254,19 @@
     var opcoes = document.getElementsByClassName("opcao");
 
     for (var i = 0; i < opcoes.length; i++) {
-        opcoes[i].classList.remove("selecionada");
+      opcoes[i].classList.remove("selecionada");
     }
 
     var radios = document.getElementsByName("respostas");
 
     for (var i = 0; i < radios.length; i++) {
-        radios[i].checked = false;
+      radios[i].checked = false;
     }
-}
+  }
 
-
+  function sari() {
+    window.location.href = 'index.html'
+  }
 
   function voltar() {
     window.location.href = './dashboard/dashboard.html'

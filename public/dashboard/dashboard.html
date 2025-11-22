@@ -52,7 +52,7 @@
                 </a>
             </div>
 
-            <div class="btn-logout" onclick="limparSessao()">
+            <div class="btn-logout" onclick="sair()">
                 <h3>Sair</h3>
             </div>
 
@@ -79,7 +79,6 @@
             <canvas id="myChartCanvas1"></canvas>
         </div>
     </div>
-
 
 </body>
 
@@ -178,7 +177,9 @@
         buscarLadoForca();
     }
 
-
+function sair(){
+    window.location.href = '../index.html'
+}
     function buscarLadoForca() {
         let id_usuario = sessionStorage.ID_USUARIO;
 
