@@ -180,10 +180,14 @@ canvas {
 }
 
 .opcao.selecionada{
-  
+  background-color: rgba(16, 104, 133, 0.5);
 }
 
 .quiz input {
-  width: 30px;
+  width: 17px;
   height: auto;
+}
+
+label{
+  color: white;
 }

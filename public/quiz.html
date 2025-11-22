@@ -52,21 +52,21 @@
         <label for="pergunta" id="spanQuestaoExibida"></label>
       </div>
       <div class="opcoes">
-        <div class="opcao" onclick="selecionada()">
+        <div class="opcao" onclick="selecionar(this)">
           <input type="radio" name="respostas" id="primeiraOpcao">
-          <label for="primeiraOpcao" id="labelOpcaoUm"></label>
+          <label for="primeiraOpcao" id="labelOpcaoUm" class="opcaoLabel"></label>
         </div>
-        <div class="opcao">
+        <div class="opcao" onclick="selecionar(this)">
           <input type="radio" name="respostas" id="segundaOpcao">
-          <label for="segundaOpcao" id="labelOpcaoDois"></label>
+          <label for="segundaOpcao" id="labelOpcaoDois" class="opcaoLabel"></label>
         </div>
-        <div class="opcao">
+        <div class="opcao" onclick="selecionar(this)">
           <input type="radio" name="respostas" id="terceiraOpcao">
-          <label for="terceiraOpcao" id="labelOpcaoTres"></label>
+          <label for="terceiraOpcao" id="labelOpcaoTres" class="opcaoLabel"></label>
         </div>
-        <div class="opcao">
+        <div class="opcao" onclick="selecionar(this)">
           <input type="radio" name="respostas" id="quartaOpcao">
-          <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
+          <label for="quartaOpcao" id="labelOpcaoQuatro" class="opcaoLabel"></label>
         </div>
       </div>
       <button onclick="avancar()">Avançar</button>
@@ -131,12 +131,29 @@
   var lado = 0
 
 
+  function selecionar(divOpcao) {
+    // Tirar a seleção da outra
+    var anterior = document.querySelector(".selecionada");
+    if (anterior) {
+        anterior.classList.remove("selecionada");
+    }
+
+    // Marcar seleção na div clicada
+    divOpcao.classList.add("selecionada");
+
+    // Marcar o input como selecionado
+    var radio = divOpcao.querySelector("input");
+    radio.checked = true;
+}
+
+
   function avancar() {
     let idUsuario = sessionStorage.ID_USUARIO;
 
     var selecionado = ''
     var opcoes = document.getElementsByName("respostas");
     var hasChecked = false
+
     for (var i = 0; i < opcoes.length; i++) {
       if (opcoes[i].checked) {
         hasChecked = true
@@ -168,6 +185,7 @@
 
     if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
       preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+      limparCoresBackgroundOpcoes(); 
       return;
     } else {
 
@@ -231,6 +249,21 @@
     document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
     document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
   }
+
+  function limparCoresBackgroundOpcoes() {
+    var opcoes = document.getElementsByClassName("opcao");
+
+    for (var i = 0; i < opcoes.length; i++) {
+        opcoes[i].classList.remove("selecionada");
+    }
+
+    var radios = document.getElementsByName("respostas");
+
+    for (var i = 0; i < radios.length; i++) {
+        radios[i].checked = false;
+    }
+}
+
 
 
   function voltar() {
