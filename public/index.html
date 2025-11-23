@@ -113,13 +113,13 @@
     <H1>Linha do tempo - Star Wars</H1>
     <div class="container">
       <div class="inf">
-        <img src="" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
-      </div>
-      <div class="inf">
+        <img src="./assets/img/episode1.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum corporis consequatur minus
           voluptatibus voluptatum, eaque dolore placeat doloremque similique eos? Explicabo, culpa
           perferendis. Doloribus et totam pariatur dicta necessitatibus recusandae.</p>
       </div>
+      <button id="avançarBtn" onclick="proximaImg()"><img src="./assets/img/rigth_arrow.png" alt=""></button>
+      <button id="voltarBtn" onclick="voltarImg()"><img src="./assets/img/left_arrow.png" alt=""></button>
     </div>
   </div>
   <div class="parte4">
@@ -184,7 +184,15 @@
             heróis improváveis.</p>
         </div>
       </div>
-
+    </div>
+  </div>
+  <div class="criador">
+    <h1>O criador: George Lucas</h1>
+    <div class="container">
+      <div class="george">
+        <img src="./assets/img/criador.jpg" alt="">
+        <p>George Lucas é um dos nomes mais importantes da história do entretenimento moderno. Nascido em 1944, ele se tornou cineasta, roteirista, produtor e um dos maiores visionários de Hollywood. Lucas criou Star Wars, uma saga que redefiniu completamente o gênero de ficção científica e se tornou um fenômeno cultural global. Sua capacidade de unir narrativa épica, tecnologia inovadora e construção de mundos profundos mudou para sempre a forma como histórias são contadas no cinema. Além disso, Lucas também é o criador de Indiana Jones, ao lado de Steven Spielberg, outra franquia icônica que marcou gerações com aventuras inesquecíveis. Para tornar suas ideias possíveis, ele fundou empresas que revolucionaram a indústria, como a Industrial Light & Magic (ILM) — responsável por efeitos especiais que abriram novos caminhos no cinema — e a Skywalker Sound, que elevou o nível da produção de áudio em filmes. Mesmo após vender a Lucasfilm para a Disney em 2012, a influência de George Lucas permanece viva em cada novo filme, série, jogo e obra inspirada no universo que ele começou. Seu legado ultrapassa o cinema: ele moldou a cultura pop, inspirou milhões de fãs e ajudou a transformar a tecnologia usada na produção audiovisual mundial. </p>
+      </div>
     </div>
   </div>
   <div class="footer">
@@ -246,7 +254,7 @@
 </html>
 <script>
 
-  function quiz(){
+  function quiz() {
     window.location.href = 'login.html'
   }
 </script>

@@ -52,17 +52,17 @@
   </div>
   <div class="banner">
     <div class="container">
-      <div class="slide">
-        <img src="./assets/img/fallenOrder.jpg" alt="">
+      <div class="slide on">
+        <img src="./assets/img/fallenOrder.jpg" alt="" >
       </div>
       <div class="slide">
-        <img src="./assets/img/lego.avif" alt="">
+        <img src="./assets/img/lego.avif" alt="" >
       </div>
       <div class="slide">
-        <img src="./assets/img/fallenOrder.jpg" alt="">
+        <img src="./assets/img/oldRepublic.jpg" alt="" >
       </div>
-      <button id="rigth-btn"><img src="./assets/img/rigth_arrow.png" alt=""></button>
-      <button id="left-btn"><img src="./assets/img/left_arrow.png" alt=""></button>
+      <button id="rigthBtn" onclick="proximaImg()"><img src="./assets/img/rigth_arrow.png" alt=""></button>
+      <button id="leftBtn" onclick="voltarImg()"><img src="./assets/img/left_arrow.png" alt=""></button>
     </div>
   </div>
   <div class="game-info">
@@ -216,13 +216,13 @@
       </div>
     </div>
   </div>
-  <div class="recomendacoes">
+  <!-- <div class="recomendacoes">
     <div class="container">
       <div class="card">
         <img src="./assets/img/aliança.png" alt="">
         <div class="linha"></div>
         <a href="" id="txt">Alguma coisa Star Wars</a>
-        <!--<img src="./assets/img/Design_sem_nome__4_-removebg-preview.png" alt=""> -->
+        <img src="./assets/img/Design_sem_nome__4_-removebg-preview.png" alt="">
       </div>
       <div class="card">
 
@@ -231,7 +231,7 @@
 
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="footer">
     <div class="container">
       <div class="redes-sociais">
@@ -258,3 +258,47 @@
 </body>
 
 </html>
+<script>
+
+  var slide = document.querySelectorAll('.slide');
+  var proxBotao = document.getElementById('rigthBtn');
+  var voltarBotao = document.getElementById('leftBtn');
+  var slideAtual = 0;
+
+
+  function esconderImg(){
+    slide.forEach(item => item.classList.remove('on'))
+      
+    };
+  
+  function mostrarImg(){
+    slide[slideAtual].classList.add('on')
+  }
+
+  function proximaImg(){
+    esconderImg()
+    if(slideAtual == slide.length - 1){
+      slideAtual = 0
+    }else{
+      slideAtual++
+    }
+
+    mostrarImg()
+  }
+
+  function voltarImg(){
+    esconderImg()
+    if(slideAtual == 0){
+      slideAtual = slide.length - 1
+    }else{
+      slideAtual--
+    }
+
+    mostrarImg()
+  }
+
+  mostrarImg();
+
+  proxBotao.addEventListener('click');
+  voltarBotao.addEventListener('click');
+</script>
