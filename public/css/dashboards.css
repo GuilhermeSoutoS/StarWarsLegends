@@ -26,7 +26,7 @@ canvas {
   color: white;
 }
 
-.header-left {
+.headerLeft {
   position: fixed;
   top: 0;
   left: 0;
@@ -53,7 +53,7 @@ canvas {
   overflow: auto;
 }
 
-.header-left h1 {
+.headerLeft h1 {
   color: #c21414;
 }
 
@@ -73,7 +73,7 @@ canvas {
   font-weight: 800;
 }
 
-.btn-nav {
+.btnNav {
   width: 90%;
   height: 30px;
   color: white;
@@ -82,7 +82,11 @@ canvas {
 
 }
 
-.btn-nav-white {
+.btnNav h3{
+  margin-top: 2px;
+}
+
+.btnNavWhite {
   width: 90%;
   background-color: rgb(43, 42, 42);
   height: 30px;
@@ -91,19 +95,19 @@ canvas {
 
 }
 
-.btn-nav-white h3 {
+.btnNavWhite h3 {
   color: #ffffff;
   padding: 0;
   margin: 0;
 }
 
-.btn-nav h3,
-.btn-logout h3 {
+
+.btnLogout h3 {
   margin: 0;
   padding: 0;
 }
 
-.btn-logout {
+.btnLogout {
   margin: 0;
   padding: 0;
   width: 20%;
@@ -133,7 +137,9 @@ canvas {
   box-shadow: 0 0 15px #ff0000;
   margin-top: 60px;
   border-radius: 5px;
+  justify-content: center;
 }
+
 
 .kpi p{
   color: white;
@@ -150,4 +156,24 @@ canvas {
   height: auto;
   margin-left: 800px;
   margin-top: 50px;
+}
+
+.dash h1{
+  justify-content: center;
+  display: flex;
+  margin-left: 250px;
+}
+
+.kpi h1{
+  display: flex;
+  font-size: 20px;
+  position: absolute;
+  margin-left: 10px;
+}
+
+.kpi span{
+  display: flex;
+  justify-content: center;
+  margin-top: 30%;
+  font-size: 40px;
 }
