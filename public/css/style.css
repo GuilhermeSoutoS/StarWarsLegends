@@ -753,11 +753,12 @@ a {
     align-items: center;
     background-color: rgba(14, 84, 108, 0.5);
     border-radius: 10px;
-    width: 170%;
+    width: 100%;
     height: 430px;
     margin: 50px 0px 0px 20px;
     color: white;
     line-height: 20px;
+    flex-basis: 65%;
 
 }
 
@@ -770,11 +771,16 @@ a {
     margin: 20px 20px 30px;
     line-height: 1.2;
 }
-
+.fotoHistoria{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-basis: 40%;
+}
 .fotoHistoria img {
     margin: 50px 10px 10px 10px;
-    width: 95%;
-    height: auto;
+    width: 87%;
+    height: 69%;
     border-radius: 15px;
 }
 
@@ -888,8 +894,16 @@ a {
 }
 
 .content-momentos img {
-    width: 60%;
+    width: 95%;
     height: 100%;
+}
+
+.content-momentos p{
+    display: flex;
+    width: 180%;
+    line-height: 1.3;
+    margin-left: 20px;
+
 }
 
 /*Valores*/
@@ -898,7 +912,7 @@ a {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .valores h1 {
@@ -943,6 +957,10 @@ a {
     height: 350px;
     margin-bottom: 110px;
 
+}
+
+.content-valor p{
+    text-align: center;
 }
 
 /*Rank sobre mim*/
@@ -993,6 +1011,7 @@ a {
     color: white;
     margin: 0;
     align-self: center;
+    text-align: center;
 }
 
 .content-rank p {
@@ -1006,7 +1025,7 @@ a {
 .content-rank img {
     margin-left: 10px;
     width: 250px;
-    height: 250px;
+    height: 280px;
     border-radius: 20px;
 }
 
