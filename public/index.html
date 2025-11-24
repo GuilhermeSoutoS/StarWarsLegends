@@ -113,10 +113,18 @@
     <H1>Linha do tempo - Star Wars</H1>
     <div class="container">
       <div class="inf">
-        <img src="./assets/img/episode1.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum corporis consequatur minus
-          voluptatibus voluptatum, eaque dolore placeat doloremque similique eos? Explicabo, culpa
-          perferendis. Doloribus et totam pariatur dicta necessitatibus recusandae.</p>
+        <div class="carrossel on">
+          <img src="./assets/img/episode1.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum corporis consequatur minus
+            voluptatibus voluptatum, eaque dolore placeat doloremque similique eos? Explicabo, culpa
+            perferendis. Doloribus et totam pariatur dicta necessitatibus recusandae.</p>
+        </div>
+        <div class="carrosel">
+          <img src="./assets/img/rogueOne.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum corporis consequatur minus
+            voluptatibus voluptatum, eaque dolore placeat doloremque similique eos? Explicabo, culpa
+            perferendis. Doloribus et totam pariatur dicta necessitatibus recusandae.</p>
+        </div>
       </div>
       <button id="avançarBtn" onclick="proximaImg()"><img src="./assets/img/rigth_arrow.png" alt=""></button>
       <button id="voltarBtn" onclick="voltarImg()"><img src="./assets/img/left_arrow.png" alt=""></button>
@@ -218,37 +226,6 @@
   <div class="footer2">
     <h1>© Guilherme Souto - Todos os direitos reservados</h1>
   </div>
-  <!--
-<div class="tenor-gif-embed" data-postid="20589431" data-share-method="host" data-aspect-ratio="1" data-width="50%"></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-
-
-
-
-
-
-    <div class="introducao">
-            <div class="card">
-                <p>Rebelião</p>
-            </div>
-            <div class="card">
-                <p>Império</p>
-            </div>
-            <div class="card">
-                <p>Força</p>
-            </div>
-        </div>
-
-    <div class="rogue">
-            
-            <div class="video">
-
-                <video src="./videos/rogueOneTrailer.mp4" controls></video>
-            </div>
-            <div class="infoRogue">
-                <h1>Rogue one</h1>
-            </div>
-       
-          </div>-->
 </body>
 
 </html>
@@ -257,4 +234,46 @@
   function quiz() {
     window.location.href = 'login.html'
   }
+
+  var slide = document.querySelectorAll('.carrossel');
+  var proxBotao = document.getElementById('avançarBtn');
+  var voltarBotao = document.getElementById('voltarBtn');
+  var slideAtual = 0;
+
+
+  function esconderImg(){
+    slide.forEach(item => item.classList.remove('on'))
+      
+    };
+  
+  function mostrarImg(){
+    slide[slideAtual].classList.add('on')
+  }
+
+  function proximaImg(){
+    esconderImg()
+    if(slideAtual == slide.length - 1){
+      slideAtual = 0
+    }else{
+      slideAtual++
+    }
+
+    mostrarImg()
+  }
+
+  function voltarImg(){
+    esconderImg()
+    if(slideAtual == 0){
+      slideAtual = slide.length - 1
+    }else{
+      slideAtual--
+    }
+
+    mostrarImg()
+  }
+
+  mostrarImg();
+
+  proxBotao.addEventListener('click');
+  voltarBotao.addEventListener('click');
 </script>
