@@ -44,7 +44,7 @@
       <div class="subcontainer">
         <img src="./assets/img/logoholograma.png" alt="">
         <h1>Terminal holograma</h1>
-        <div id="div_cadastro_parte1" class="cadastro-parte1" style="display: block;">
+        <div id="div_cadastro_parte1" class="cadastro-parte1">
           <div class="campo-cadastro">
 
             <div class="campo">
@@ -69,42 +69,6 @@
             </div>
             <div class="campo">
 
-              <input type="text" id="input_telefone" placeholder="Insira seu telefone"><br>
-            </div>
-            <div class="campo">
-
-              <input type="text" id="input_cpf" placeholder="Insira seu cpf"><br>
-            </div>
-          </div>
-
-          <button onclick="continuar()">Continuar</button>
-        </div>
-
-        <div id="div_cadastro_parte2" style="display: none;" class="cadastro-parte2">
-          <div class="campo-cadastro">
-
-            <div class="campo">
-
-              <input type="text" id="input_rua" placeholder="Nome da rua">
-            </div>
-            <div class="campo">
-
-              <input type="text" id="input_bairro" placeholder="Insira o bairro"><br>
-            </div>
-            <div class="campo">
-
-              <input type="text" id="input_numero" placeholder="Insira o numero"><br>
-            </div>
-          </div>
-
-          <div class="campo-cadastro">
-
-            <div class="campo">
-
-              <input type="text" id="input_complemento" placeholder="Insira o complemento">
-            </div>
-            <div class="campo">
-
               <input type="text" id="input_senha" placeholder="Insira a senha"><br>
             </div>
             <div class="campo">
@@ -112,10 +76,10 @@
               <input type="text" id="input_senhaConf" placeholder="Confirme a senha"><br>
             </div>
           </div>
-          <div class="botoes">
 
-            <button onclick="voltar()" style="width: 100%; height: 50px;">Voltar</button>
-            <button onclick="cadastrar()" style="width: 100%; height: 50px;">Cadastrar</button>
+        </div>
+          <div class="botoes">
+            <button onclick="cadastrar()">Cadastrar</button>
           </div>
         </div>
       </div>
@@ -126,33 +90,7 @@
 </html>
 
 <script>
-
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  // let listaEmpresasCadastradas = [];
-  function continuar() {
-    var nome = input_nome.value;
-    var nomeUsuario = input_nomeUsuario.value;
-    var dataNasc = input_dataNasc.value;
-    var email = input_email.value;
-    var cpf = input_cpf.value;
-    var telefone = input_telefone.value;
-
-    if (nome == '' || email == '' || telefone == '' || nomeUsuario == '' || dataNasc == '') {
-      alert('Preencha as informações corretamente.')
-    } else {
-
-      div_cadastro_parte1.style.display = `none`;
-      div_cadastro_parte2.style.display = `block`;
-    }
-
-  }
-
-  function voltar() {
-    div_cadastro_parte1.style.display = `block`;
-    div_cadastro_parte2.style.display = `none`;
-  }
   function cadastrar() {
-    // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -160,38 +98,20 @@
     var email = input_email.value;
     var nomeUsuario = input_nomeUsuario.value;
     var dataNasc = input_dataNasc.value;
-    var email = input_email.value;
-    var telefone = input_telefone.value;
-    var rua = input_rua.value;
     var senha = input_senha.value;
     var senhaConf = input_senhaConf.value;
-    // var codigoVar = codigo_input.value;
-    // var idEmpresaVincular
 
     // Verificando se há algum campo em branco
-    if (senhaConf == "" || senha == '') {
-      alert = ('Preencha as informações corretamente.');
+    if (nome == '' || email == '' || nomeUsuario == '' || dataNasc == '' || senha == '' || senhaConf == '') {
+      alert('Preencha as informações corretamente.')
 
-     
-    } else if (senha != senhaConf) {
-      alert = ('Senhas divergentes!')
+    } else if (senhaConf != senha) {
+      alert = ('Senhas divergentes!');
+
     } else {
       setInterval(5000);
       window.location = "login.html";
     }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    /* for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigo) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    }*/
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -207,8 +127,6 @@
         senhaServer: senha,
         nomeUServer: nomeUsuario,
         dataNascServer: dataNasc,
-        telefoneServer: telefone,
-
       }),
     })
       .then(function (resposta) {
@@ -237,27 +155,4 @@
     return false;
   }
 
-  /* Listando empresas cadastradas
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }*/
-
-  //  function sumirMensagem() {
-  //  cardErro.style.display = "none";
-  //}
 </script>

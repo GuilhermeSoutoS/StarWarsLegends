@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-// var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -20,20 +19,6 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                          res.status(200).json(resultadoAutenticar);
-
-                     /*   aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
-                                        aquarios: resultadoAquarios
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }*/
                             
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -57,15 +42,8 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    // var fkEmpresa = req.body.idEmpresaVincularServer;
-    // var cpf = req.body.cpfServer;
     var nomeUsuario = req.body.nomeUServer;
     var dataNasc = req.body.dataNascServer;
-    var telefone = req.body.telefoneServer;
-    // var rua = req.body.ruaServer;
-    // var numero = req.body.numeroServer;
-    // var complemento = req.body.complementoServer;
-    // var bairro = req.body.bairroServer;
 
 
     // Faça as validações dos valores
@@ -75,26 +53,14 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (cpf == undefined) {
-        res.status(400).send("Seu cpf está undefined!");
-    }else if (nomeUsuario == undefined) {
+    } else if (nomeUsuario == undefined) {
         res.status(400).send("Seu nickname está undefined!");
     }else if (dataNasc == undefined) {
         res.status(400).send("Sua data de nascimento está undefined!");
-    }else if (telefone == undefined) {
-        res.status(400).send("Seu telefone está undefined!");
-    }else if (rua == undefined) {
-        res.status(400).send("Sua rua está undefined!");
-    }else if (numero == undefined) {
-        res.status(400).send("Seu numero está undefined!");
-    }else if (complemento == undefined) {
-        res.status(400).send("Seu complemento está undefined!");
-    }else if (bairro == undefined) {
-        res.status(400).send("Seu bairro está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, cpf, nomeUsuario, dataNasc, telefone, rua, numero, complemento, bairro)
+        usuarioModel.cadastrar(nome, email, senha, nomeUsuario, dataNasc)
             .then(
                 function (resultado) {
                     res.json(resultado);

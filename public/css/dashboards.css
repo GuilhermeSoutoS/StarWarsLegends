@@ -37,7 +37,7 @@ canvas {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-right: 3px solid #b61111;
+  border-right: 3px solid #0c4f75;
   background-color: #212124;
 }
 
@@ -54,7 +54,7 @@ canvas {
 }
 
 .headerLeft h1 {
-  color: #c21414;
+  color: #0c4f75;
 }
 
 .hello {
@@ -64,7 +64,7 @@ canvas {
 }
 
 .hello h3 {
-  color: #9f1111;
+  color: #0c4f75;
   font-weight: 300;
   font-size: 1.2rem;
 }
@@ -77,7 +77,7 @@ canvas {
   width: 90%;
   height: 30px;
   color: white;
-  background-color: #ad1717;
+  background-color: #1376b0;
   text-align: center;
 
 }
@@ -88,9 +88,9 @@ canvas {
 
 .btnNavWhite {
   width: 90%;
-  background-color: rgb(43, 42, 42);
+  background-color: rgb(42, 42, 43);
   height: 30px;
-  border: 3px solid #b91e1e;
+  border: 3px solid #1376b0;
   text-align: center;
 
 }
@@ -111,7 +111,7 @@ canvas {
   margin: 0;
   padding: 0;
   width: 20%;
-  background-color: #b01313;
+  background-color: #1376b0;
   color: white;
   border-radius: 5px;
   text-align: center;
@@ -133,8 +133,8 @@ canvas {
   display: flex;
   width: 150px;
   height: 120px;
-  background-color: rgba(173, 26, 26, 0.5);
-  box-shadow: 0 0 15px #ff0000;
+  background-color: rgba(43, 78, 216, 0.5);
+  box-shadow: 0 0 15px #00a6ff;
   margin-top: 60px;
   border-radius: 5px;
   justify-content: center;

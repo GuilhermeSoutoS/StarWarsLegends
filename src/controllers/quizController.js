@@ -39,6 +39,5 @@ function contagem(req, res) {
 module.exports = {
     listar,
     registrar,
-    // cadastrar,
     contagem
 }
