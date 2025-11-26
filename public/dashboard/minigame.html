@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>Grogugame</title>
 
     <link rel="stylesheet" href="../css/minigame.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -23,7 +23,7 @@
             <h1 id="tituloPagina">Star Forum</h1>
 
             <div class="hello">
-                <h3 id="boasVindas">Olá, <span id="b_usuario">usuário</span>!</h3>
+                <h3 id="boasVindas">Olá, <span id="b_usuario"></span>!</h3>
             </div>
 
             <div class="btnNavWhite" id="minigame">
@@ -70,14 +70,16 @@
                 <button class="pixel" onclick="restart()">RESTART</button>
             </div>
         </div>
-        <img src="../assets/img/yo" alt="">
     </div>
 
 </body>
 
 </html>
 <script>
+    let b_usuario = sessionStorage.ID_USUARIO;
 
+    var tempoFinal = 0
+    var pontuacaoFinal = 0
     var pontos = 0
     var minutos = 0
     var segundos = 0
@@ -121,6 +123,37 @@
 
                 clearInterval(loop)
                 clearInterval(contador)
+
+                pontuacaoFinal = pontos;
+                tempoFinal = cronometro.innerHTML
+
+                console.log(pontuacaoFinal)
+                console.log(tempoFinal)
+
+                 fetch("/minigame/guardar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          tempoFinalServer: tempoFinal,
+          pontuacaoFinalServer: pontuacaoFinal,
+          idUsuarioServer: b_usuario
+
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+
+          if (resposta.ok) {
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+        });
             }
 
         }, 10)
@@ -142,16 +175,25 @@
             var dezenaMin = Math.floor(minutos / 10).toString()
             var unidadeMin = (minutos % 10).toString()
             var minutosFormatados = dezenaMin + unidadeMin
-            cronometro.innerHTML = `${minutosFormatados}:${segundosFormatados}`
+            cronometro.innerHTML = `00:${minutosFormatados}:${segundosFormatados}`
 
 
             pontos = pontos + 10
             pontuacao.innerHTML = `${pontos}`
+
+
         }, 200)
+
 
     }
 
     document.addEventListener('keydown', pular)
+
+
+   
+
+
+
 
 
 </script>
