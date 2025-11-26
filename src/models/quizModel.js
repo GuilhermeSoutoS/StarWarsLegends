@@ -21,11 +21,15 @@ function registrar(idUsuario, lado_forca) {
 
 function contagem() {
     var instrucao = `
-        SELECT 
-            lado_forca,
-            COUNT(*) AS total
-        FROM quiz
-        GROUP BY lado_forca;
+SELECT lado_forca, COUNT(*) AS total
+    FROM quiz q
+JOIN (
+    SELECT fkUsuario, MAX(id) AS ultimo_id
+    FROM quiz
+    GROUP BY fkUsuario
+    ) AS ultimos ON q.id = ultimos.ultimo_id
+GROUP BY lado_forca;
+
     `;
     console.log("Executando SQL: " + instrucao);
     return database.executar(instrucao);

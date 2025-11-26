@@ -31,13 +31,13 @@
             </div>
 
             <div class="btnNav" id="btnNav">
-                <a href="../dashboard/dashboard.html">
+                <a href="../dashboard/dashboard.html" style="text-decoration: none;">
                 <h3>Gráficos</h3></a>
 
             </div>
 
             <div class="btnNavWhite" id="btnNavWhite">
-                <a href="../quiz.html">
+                <a href="../quiz.html" style="text-decoration: none;">
                     <h3>Quiz</h3>
                 </a>
             </div>
@@ -54,12 +54,15 @@
             <img src="../assets/img/nuvens.png" alt="" class="nuvem">
             <img src="../assets/img/stormtrooper.png" alt="" class="stormtrooper">
             <img src="../assets/img/pixelgrogu-pixelgrogunft.gif" alt="" class="yoda">
+            <p>Pontuação: 12</p>
         </div>
     </div>
 
 </body>
 </html>
 <script>
+    var minutos = 0
+    var segundos = 0
     var yoda = document.querySelector('.yoda')
     var stormTrooper = document.querySelector('.stormtrooper')
     var nuvem = document.querySelector('.nuvem')
@@ -78,7 +81,7 @@
         var posicaoStorm = stormTrooper.offsetLeft;
         var posicaoYoda = +window.getComputedStyle(yoda).bottom.replace('px','');
         var posicaoNuvem = nuvem.offsetLeft;
-        console.log(posicaoStorm)
+        // console.log(posicaoStorm)
         if(posicaoStorm <= 50 && posicaoStorm > 0 &&posicaoYoda < 113){
             stormTrooper.style.animation = 'none'
             stormTrooper.style.left = `${posicaoStorm}px`
@@ -93,6 +96,9 @@
         }
     },10)
 
+   
+
+    
 
     document.addEventListener('keydown',pular)
 

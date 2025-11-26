@@ -84,6 +84,8 @@ canvas {
 
 .btnNav h3 {
   margin-top: 2px;
+  color: white;
+
 }
 
 .btnNavWhite {
@@ -168,6 +170,12 @@ canvas {
   width: 200px;
   animation: nuvens 10s infinite linear
 
+}
+
+.game .container p{
+  font-size: 30px;
+  font-weight: bold;
+  color: #1376b0;
 }
 
 
