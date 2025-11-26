@@ -9,7 +9,6 @@ nome varchar(100),
 nomeUsuario varchar (30),
 dataNasc date,
 email varchar(45),
-telefone varchar(11),
 senha varchar(40)
 );
 drop table usuario;
@@ -72,3 +71,25 @@ select
         
         select * from quiz;
         select * from usuario;
+        
+        select *,
+        usuario.*
+	FROM quiz join usuario on fkUsuario = usuario.id;
+    
+    SELECT *
+        FROM quiz
+        WHERE fkUsuario = 9
+        ORDER BY id DESC
+        LIMIT 1;
+        
+        
+        
+SELECT lado_forca, COUNT(*) AS total
+FROM quiz q
+JOIN (
+    SELECT fkUsuario, MAX(id) AS ultimo_id
+    FROM quiz
+    GROUP BY fkUsuario
+) AS ultimos ON q.id = ultimos.ultimo_id
+GROUP BY lado_forca;
+    
