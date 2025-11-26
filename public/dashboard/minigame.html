@@ -12,6 +12,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -32,7 +34,8 @@
 
             <div class="btnNav" id="btnNav">
                 <a href="../dashboard/dashboard.html" style="text-decoration: none;">
-                <h3>Gráficos</h3></a>
+                    <h3>Gráficos</h3>
+                </a>
 
             </div>
 
@@ -50,57 +53,105 @@
 
     </div>
     <div class="game">
-        <div class="container">
+        <div class="container" id="container1">
+            <H1 class="pixel">GROGUGAME</H1>
+            <p class="pixel">Aperte START para iniciar</p>
+            <button class="pixel" onclick="start()">START</button>
+        </div>
+        <div class="container" id="container2" style="display: none;">
             <img src="../assets/img/nuvens.png" alt="" class="nuvem">
             <img src="../assets/img/stormtrooper.png" alt="" class="stormtrooper">
             <img src="../assets/img/pixelgrogu-pixelgrogunft.gif" alt="" class="yoda">
-            <p>Pontuação: 12</p>
+            <p>Pontuação: <span id="pontuacao"></span></p>
+            <p><span id="cronometro"></span></p>
+            <div class="gameover" id="container3" style="display: none;">
+                <h1 class="pixel">GAME OVER</h1>
+                <P class="pixel">Veja seu histórico na tela de dashboards!</P>
+                <button class="pixel" onclick="restart()">RESTART</button>
+            </div>
         </div>
+        <img src="../assets/img/yo" alt="">
     </div>
 
 </body>
+
 </html>
 <script>
+
+    var pontos = 0
     var minutos = 0
     var segundos = 0
+
     var yoda = document.querySelector('.yoda')
     var stormTrooper = document.querySelector('.stormtrooper')
     var nuvem = document.querySelector('.nuvem')
-    
-    function pular(){
+
+    function pular() {
         yoda.classList.add('pular')
 
-        setTimeout(()=>{
+        setTimeout(() => {
             yoda.classList.remove('pular')
-        },500)
+        }, 500)
     }
 
+    function start() {
+        container1.style.display = 'none'
+        container2.style.display = 'block'
 
-    var loop = setInterval(() =>{
 
-        var posicaoStorm = stormTrooper.offsetLeft;
-        var posicaoYoda = +window.getComputedStyle(yoda).bottom.replace('px','');
-        var posicaoNuvem = nuvem.offsetLeft;
-        // console.log(posicaoStorm)
-        if(posicaoStorm <= 50 && posicaoStorm > 0 &&posicaoYoda < 113){
-            stormTrooper.style.animation = 'none'
-            stormTrooper.style.left = `${posicaoStorm}px`
+        var loop = setInterval(() => {
 
-            yoda.style.animation = 'none'
-            yoda.style.bottom = `${posicaoYoda}px`
+            var posicaoStorm = stormTrooper.offsetLeft;
+            var posicaoYoda = +window.getComputedStyle(yoda).bottom.replace('px', '');
+            var posicaoNuvem = nuvem.offsetLeft;
+            // console.log(posicaoStorm)
+            if (posicaoStorm <= 50 && posicaoStorm > 0 && posicaoYoda < 113) {
+                stormTrooper.style.animation = 'none'
+                stormTrooper.style.left = `${posicaoStorm}px`
 
-            nuvem.style.animation = 'none'
-            nuvem.style.left = `${posicaoNuvem}px`
+                yoda.style.animation = 'none'
+                yoda.style.bottom = `${posicaoYoda}px`
+                yoda.src = '../assets/img/yodaEscondido.png'
 
-            clearInterval(loop)
-        }
-    },10)
+                nuvem.style.animation = 'none'
+                nuvem.style.left = `${posicaoNuvem}px`
 
-   
+                container3.style.display = 'flex'
 
-    
 
-    document.addEventListener('keydown',pular)
+                clearInterval(loop)
+                clearInterval(contador)
+            }
+
+        }, 10)
+
+        var contador = setInterval(() => {
+            segundos++
+
+            if (segundos == 59) {
+                pontos += 30
+                segundos = 0
+                minutos++
+            }
+
+            var dezenaSeg = Math.floor(segundos / 10).toString()
+            var unidadeSeg = (segundos % 10).toString()
+            var segundosFormatados = dezenaSeg + unidadeSeg
+
+
+            var dezenaMin = Math.floor(minutos / 10).toString()
+            var unidadeMin = (minutos % 10).toString()
+            var minutosFormatados = dezenaMin + unidadeMin
+            cronometro.innerHTML = `${minutosFormatados}:${segundosFormatados}`
+
+
+            pontos = pontos + 10
+            pontuacao.innerHTML = `${pontos}`
+        }, 200)
+
+    }
+
+    document.addEventListener('keydown', pular)
 
 
 </script>
