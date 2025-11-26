@@ -51,6 +51,7 @@
     </div>
     <div class="game">
         <div class="container">
+            <img src="../assets/img/nuvens.png" alt="" class="nuvem">
             <img src="../assets/img/stormtrooper.png" alt="" class="stormtrooper">
             <img src="../assets/img/pixelgrogu-pixelgrogunft.gif" alt="" class="yoda">
         </div>
@@ -60,6 +61,8 @@
 </html>
 <script>
     var yoda = document.querySelector('.yoda')
+    var stormTrooper = document.querySelector('.stormtrooper')
+    var nuvem = document.querySelector('.nuvem')
     
     function pular(){
         yoda.classList.add('pular')
@@ -68,6 +71,30 @@
             yoda.classList.remove('pular')
         },500)
     }
+
+
+    var loop = setInterval(() =>{
+
+        var posicaoStorm = stormTrooper.offsetLeft;
+        var posicaoYoda = +window.getComputedStyle(yoda).bottom.replace('px','');
+        var posicaoNuvem = nuvem.offsetLeft;
+        console.log(posicaoStorm)
+        if(posicaoStorm <= 50 && posicaoStorm > 0 &&posicaoYoda < 113){
+            stormTrooper.style.animation = 'none'
+            stormTrooper.style.left = `${posicaoStorm}px`
+
+            yoda.style.animation = 'none'
+            yoda.style.bottom = `${posicaoYoda}px`
+
+            nuvem.style.animation = 'none'
+            nuvem.style.left = `${posicaoNuvem}px`
+
+            clearInterval(loop)
+        }
+    },10)
+
+
     document.addEventListener('keydown',pular)
+
 
 </script>

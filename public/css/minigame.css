@@ -149,7 +149,6 @@ canvas {
   position: absolute;
   margin-top: 370px;
   width: 100px;
-  right: 0;
   animation: animacao-inimigo 2s infinite linear
 }
 
@@ -157,10 +156,29 @@ canvas {
   position: absolute;
   width: 80px;
   margin-top: 390px;
+  /* bottom: 113px; */
 }
 
-.pular{
+.pular {
   animation: pular 500ms infinite ease-out;
+}
+
+.nuvem {
+  position: absolute;
+  width: 200px;
+  animation: nuvens 10s infinite linear
+
+}
+
+
+@keyframes nuvens {
+  from {
+    right: -200px;
+  }
+
+  to {
+    right: 100%;
+  }
 }
 
 @keyframes animacao-inimigo {
@@ -175,24 +193,24 @@ canvas {
 }
 
 @keyframes pular {
-  
-  0%{
+
+  0% {
     margin-top: 390px;
   }
 
-  40%{
+  40% {
     margin-top: 200px;
   }
 
-  50%{
+  50% {
     margin-top: 200px;
   }
 
-  60%{
+  60% {
     margin-top: 200px;
   }
 
-  100%{
+  100% {
     margin-top: 390px;
   }
 }
