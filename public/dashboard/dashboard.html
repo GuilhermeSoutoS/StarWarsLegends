@@ -32,7 +32,7 @@
 
             <div class="btnNavWhite" id="minigame">
                 <a href="minigame.html" style="text-decoration: none;">
-                <h3>Minigame</h3>
+                    <h3>Minigame</h3>
                 </a>
             </div>
 
@@ -73,6 +73,9 @@
         <div id="graficos" class="grafico">
             <canvas id="myChartCanvas1"></canvas>
         </div>
+        <div id="graficos" class="grafico">
+            <canvas id="myChartCanvas2"></canvas>
+        </div>
     </div>
 
 </body>
@@ -83,10 +86,12 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;
+    let id_usuario = sessionStorage.ID_USUARIO;
 
     function iniciar() {
         carregarKpi();
         obterDadosGrafico();
+        obterDadosGraficoGame();
         buscarLadoForca();
     }
 
@@ -94,7 +99,6 @@
         window.location.href = '../index.html'
     }
     function buscarLadoForca() {
-        let id_usuario = sessionStorage.ID_USUARIO;
 
         fetch(`/resultadoQuiz/resultado/${id_usuario}`, { cache: 'no-store' }).then(function (response) {
 
@@ -329,4 +333,81 @@
             });
 
     }
+
+
+    function obterDadosGraficoGame() {
+        fetch(`/resultadoGame/exibir/${id_usuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoGame(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API do histórico');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+
+    function plotarGraficoGame(resposta) {
+
+        console.log('iniciando plotagem do gráfico...' + JSON.stringify(resposta));
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+        let dadosPontuacao = []
+
+        for (var i = 0; i < resposta.length; i++) {
+        labels.push(`Tentativa ${i + 1}`);
+        dadosPontuacao.push(resposta[i].pontuacao);
+    }
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Histórico de pontuações',
+                data: dadosPontuacao,
+                fill: false,
+                backgroundColor: ['#1c6b35', '#a22f2f'],
+                borderColor: ['#00A8FF', '#e6005a'],
+                tension: 0.1
+            }
+
+            ]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`myChartCanvas2`),
+            config
+        );
+
+     
+    }
+    
 </script>

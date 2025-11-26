@@ -23,7 +23,7 @@
             <h1 id="tituloPagina">Star Forum</h1>
 
             <div class="hello">
-                <h3 id="boasVindas">Olá, <span id="b_usuario"></span>!</h3>
+                <h3 id="boasVindas">Olá, <span id="id_usuario"></span>!</h3>
             </div>
 
             <div class="btnNavWhite" id="minigame">
@@ -77,6 +77,8 @@
 </html>
 <script>
     let b_usuario = sessionStorage.ID_USUARIO;
+    id_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
 
     var tempoFinal = 0
     var pontuacaoFinal = 0

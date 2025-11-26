@@ -25,6 +25,7 @@ var empresasRouter = require("./src/routes/empresas");
 var kpiRouter = require("./src/routes/kpi");
 var resultadoQuizRouter = require("./src/routes/resultadoQuiz");
 var minigameRouter = require("./src/routes/minigame");
+var ResultadoGameRouter = require("./src/routes/ResultadoGame");
 
 
 app.use(express.json());
@@ -43,6 +44,7 @@ app.use("/quiz", quizRouter);
 app.use("/kpi", kpiRouter);
 app.use("/resultadoQuiz", resultadoQuizRouter);
 app.use("/minigame", minigameRouter);
+app.use("/ResultadoGame", ResultadoGameRouter);
 
 
 app.listen(PORTA_APP, function () {
