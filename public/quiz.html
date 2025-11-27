@@ -10,34 +10,32 @@
   <title>Quiz</title>
 </head>
 
-<body>
+<body onload="buscarLadoForca()">
   <div class="janela">
-    <div class="header-left">
-      <h1>Star Forum</h1>
+    <div class="header-left" id="headerLeft">
+      <h1 id="tituloPagina">Star Legends</h1>
 
       <div class="hello">
-        <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+        <h3 id="boasVindas">Olá, <span id="b_usuario">usuário</span>!</h3>
       </div>
 
-      <div class="btn-nav-white">
-        <!-- <a href="./cards.html"> -->
-        <h3>Aquários</h3>
+      <div class="btn-nav-white" id="minigame">
+        <a href="./dashboard/minigame.html">
+        <h3>Minigame</h3>
         </a>
       </div>
 
-      <div class="btn-nav">
+      <div class="btn-nav" id="btnNav">
         <a href="./dashboard/dashboard.html">
           <h3>Gráficos</h3>
         </a>
       </div>
 
-      <div class="btn-nav-white">
-        <a href="../quiz.html">
+      <div class="btn-nav-white" id="btnNavWhite">
           <h3>Quiz</h3>
-        </a>
       </div>
 
-      <div class="btn-logout" onclick="sair()">
+      <div class="btn-logout" onclick="sair()" id="btnLogout">
         <h3>Sair</h3>
       </div>
 
@@ -47,7 +45,7 @@
 
   <div class="quiz">
     <div class="container" id="container1">
-      <h1>Descubra de qual lado esta!</h1>
+      <h1>Descubra de qual lado da força está!</h1>
       <div class="pergunta">
         <label for="pergunta" id="spanQuestaoExibida"></label>
       </div>
@@ -73,14 +71,21 @@
     </div>
     <div id="container2" class="container" style="display: none;">
 
-      <div id="div_resultadoruim" style="display: none;">
-        <h1>Eita! Voce é um Sith!</h1>
-        <p>Voce está do lado negro da força...</p>
-        <button onclick="voltar()">Voltar para dash</button>
+      <div id="div_resultadoruim" style="display: none;" class="resultadoFinal">
+        <h1>Você trilha o caminho do poder… </h1>
+        <p>Você é um Sith, sua mente é estratégica, rápida e direta.
+          Você não desperdiça energia com o que não importa.
+          Sua postura é prática, intensa e, às vezes, dominadora… mas sempre eficiente.
+
+          O poder corre forte em você.</p>
+        <!-- <button onclick="voltar()">Voltar para dash</button> -->
       </div>
-      <div id="div_resultadobom" style="display: none;">
-        <h1>Ufa! Voce é um jedi</h1>
-        <p>Voce está do lado bom da força :D</p>
+      <div id="div_resultadobom" style="display: none;" class="resultadoFinal">
+        <h1>Você segue o caminho da Força…</h1>
+        <p>Você é um Jedi, sua forma de agir revela equilíbrio, empatia e clareza.
+          Você pensa nas pessoas, mas não se apega. Age com firmeza, sem perder a calma.
+          Pode não perceber, mas suas escolhas mostram que você constrói — não destrói.
+          A Força está com você.</p>
       </div>
 
     </div>
@@ -91,33 +96,97 @@
 
 <script>
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  let idUsuario = sessionStorage.ID_USUARIO;
 
   var listaDeQuestoes = [
 
     {
-      pergunta: "Qual seu personagem favorito?",
-      alternativaA: "Darth Vader",
-      alternativaB: "Luke Skywalker",
-      alternativaC: "Yoda",
-      alternativaD: "R2D2",
+      pergunta: "Você vê alguém sobrecarregado. O que faz?",
+      alternativaA: "Ajudo, mesmo atrasando meu trabalho.",
+      alternativaB: "Sigo meu caminho, mas fico pensando depois.",
+      alternativaC: "Pergunto se posso ajudar sem me comprometer.",
+      alternativaD: "Só ajudo se isso também resolver algo meu.",
       alternativaCorreta: "Han Solo"
     },
 
     {
-      pergunta: "Quantas horas tem em um dia?",
-      alternativaA: "30 horas",
-      alternativaB: "38 horas",
-      alternativaC: "48 horas",
-      alternativaD: "24 horas",
+      pergunta: "Em uma discussão, alguém fala algo que te irrita. Como reage?",
+      alternativaA: "Mantenho a calma",
+      alternativaB: "Devolvo a provocação, mas de forma controlada.",
+      alternativaC: "Prefiro não responder, não quero alimentar briga.",
+      alternativaD: "Uso o que foi dito a meu favor.",
       alternativaCorreta: "alternativaD"
     },
 
     {
-      pergunta: "Qual destes números é ímpar?",
-      alternativaA: "Dez",
-      alternativaB: "Doze",
-      alternativaC: "Oito",
-      alternativaD: "Onze",
+      pergunta: "Precisa decidir algo importante rápido. Você:",
+      alternativaA: "Pensa nas consequências para todos.",
+      alternativaB: "Escolhe o caminho mais seguro.",
+      alternativaC: "Analisa só o essencial e decide.",
+      alternativaD: "Escolhe o que te dá mais vantagem.",
+      alternativaCorreta: "alternativaD"
+    },
+
+    {
+      pergunta: "Recebe uma crítica inesperada. Sua reação:",
+      alternativaA: "Tento entender o motivo.",
+      alternativaB: "Aceito, mas fico pensando nisso depois.",
+      alternativaC: "Vejo se faz sentido e sigo.",
+      alternativaD: "Guardo a informação para usar se precisar.",
+      alternativaCorreta: "alternativaD"
+    },
+
+    {
+      pergunta: "Alguém toma uma decisão que te afeta sem te consultar. Você:",
+      alternativaA: "Conversa para alinhar melhor.",
+      alternativaB: "Aceita, mas com frustração.",
+      alternativaC: "Entende antes de reagir.",
+      alternativaD: "Reavalio a relação e minhas prioridades.",
+      alternativaCorreta: "alternativaD"
+    },
+
+    {
+      pergunta: " O projeto em grupo está bagunçado. Você:",
+      alternativaA: "Organiza o grupo para avançar.",
+      alternativaB: "Foca só no seu trabalho.",
+      alternativaC: "Sugere caminhos, mas deixa decidirem.",
+      alternativaD: "Assume a liderança.",
+      alternativaCorreta: "alternativaD"
+    },
+
+    {
+      pergunta: "Alguém está progredindo mais rápido que você. Sua atitude:",
+      alternativaA: "Sigo meu ritmo e aprendo com ela.",
+      alternativaB: "Me esforço mais, mesmo com pressão.",
+      alternativaC: "Ajusto meus métodos para evoluir melhor.",
+      alternativaD: "Transformo em um desafio pessoal.",
+      alternativaCorreta: "alternativaD"
+    },
+
+    {
+      pergunta: "Aparece uma oportunidade inesperada. Você:",
+      alternativaA: "Avalia se faz sentido para todos.",
+      alternativaB: "Agarra antes que alguém pegue.",
+      alternativaC: "Só entro se valer meu tempo.",
+      alternativaD: "Aproveito sem pensar muito.",
+      alternativaCorreta: "alternativaD"
+    },
+
+    {
+      pergunta: "Um amigo pede ajuda que vai te tomar tempo. Você:",
+      alternativaA: "Ajudo e reorganizo meu dia.",
+      alternativaB: "Ajudo, mas aviso do pouco tempo.",
+      alternativaC: "Ofereço só o que posso sem me prejudicar.",
+      alternativaD: "Ajudo se isso fortalecer a relação.",
+      alternativaCorreta: "alternativaD"
+    },
+
+    {
+      pergunta: "Sob pressão, você tende a:",
+      alternativaA: "Me acalmar e focar no essencial.",
+      alternativaB: "Resolver o mais urgente primeiro.",
+      alternativaC: "Agir de forma estratégica.",
+      alternativaD: "Cortar o que atrapalha e ir direto ao ponto.",
       alternativaCorreta: "alternativaD"
     }
 
@@ -148,7 +217,6 @@
 
 
   function avancar() {
-    let idUsuario = sessionStorage.ID_USUARIO;
 
     var selecionado = ''
     var opcoes = document.getElementsByName("respostas");
@@ -169,13 +237,13 @@
     }
 
     if (selecionado == 0) {
-      pontuacao += 5;
+      pontuacao += 3;
     } else if (selecionado == 1) {
-      pontuacao += 10;
+      pontuacao += 1;
     } else if (selecionado == 2) {
-      pontuacao += 13;
+      pontuacao -= 1;
     } else if (selecionado == 3) {
-      pontuacao += 20;
+      pontuacao -= 3;
     }
 
     for (var i = 0; i < opcoes.length; i++) {
@@ -189,7 +257,7 @@
       return;
     } else {
 
-      if (pontuacao >= 40) {
+      if (pontuacao <= 0) {
         container1.style.display = 'none'
         container2.style.display = 'flex'
         div_resultadoruim.style.display = 'flex'
@@ -224,7 +292,7 @@
 
             setTimeout(() => {
               window.location = "./dashboard/dashboard.html";
-            }, "2000");
+            }, "10000");
 
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
@@ -270,5 +338,70 @@
 
   function voltar() {
     window.location.href = './dashboard/dashboard.html'
+  }
+
+
+  function buscarLadoForca() {
+
+    fetch(`/resultadoQuiz/resultado/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          console.log('chegou aqui')
+
+          var lado = resposta[0].lado_forca;
+
+          if (lado == 1) {
+
+            tituloPagina.style.color = '#c21414';
+            boasVindas.style.color = '#9f1111';
+            b_usuario.style.color = '#9f1111';
+            minigame.style.borderColor = '#b91e1e';
+            btnNav.style.backgroundColor = '#ad1717';
+            headerLeft.style.borderColor = '#b61111';
+            btnNavWhite.style.backgroundColor = '#ad1717';
+            btnLogout.style.backgroundColor = "#b01313";
+
+
+
+
+          }
+          else if (lado == 0) {
+
+            tituloPagina.style.color = '#0c9b00';
+            boasVindas.style.color = '#0a6203';
+            b_usuario.style.color = '#0a6203';
+            minigame.style.borderColor = '#15b807';
+            btnNav.style.backgroundColor = '#15b807';
+            headerLeft.style.borderColor = '#15b807';
+            btnNavWhite.style.borderColor = '#15b807';
+            btnLogout.style.backgroundColor = "#15b807";
+
+
+
+          }
+          else {
+            tituloPagina.style.color = '#0c58d8';
+            boasVindas.style.color = '#0c3a86';
+            b_usuario.style.color = '#0c3a86';
+            minigame.style.borderColor = '#0346b8';
+            btnNav.style.backgroundColor = '#0346b8';
+            headerLeft.style.borderColor = '#0346b8';
+            btnNavWhite.style.borderColor = '#0346b8';
+            btnLogout.style.backgroundColor = "#0346b8";
+
+
+
+          }
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API cor da dash');
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
+      });
   }
 </script>

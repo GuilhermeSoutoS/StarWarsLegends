@@ -33,63 +33,22 @@ insert into quiz (fkUsuario, dataResultado, lado_forca)values
 (8, '2025-01-02', 1),
 (3, '2025-01-03', 0);
 
-SELECT 
-            lado_forca,
-            COUNT(*) AS total
-        FROM quiz
-        GROUP BY lado_forca;
-        
-        
-SELECT 
-    SUM(CASE WHEN lado_forca = '0' 
-    THEN 1 
-    ELSE 0 end) AS qtde_negro,
-    SUM(CASE WHEN lado_forca = '1' THEN 1 ELSE 0 END) AS qtde_luz
-FROM quiz;
+create table minigame (
+id int primary key auto_increment,
+pontuacao INT,
+tempo TIME,
+fkJogador INT,
+CONSTRAINT chkFkJogador
+	foreign key (fkJogador) references usuario (id)
+);
 
-select 
-	sum(lado_forca = 0) as 'lado negro',
-    sum(lado_forca = 1) as 'lado bom'
-from quiz;
-show tables;
+select * from minigame;
 
-select
-	    sum(lado_forca = 0) as 'lado negro'
-    from quiz;
-    
-    SELECT lado_forca
-        FROM quiz join usuario on quiz.fkUsuario = usuario.id
-        WHERE usuario.id = 5
-        ORDER BY usuario.id DESC
-        LIMIT 1;
-        
-        SELECT lado_forca
-        FROM quiz join usuario on quiz.fkUsuario = usuario.id
-        WHERE usuario.id = 1
-        ORDER BY quiz.id DESC
-        LIMIT 1;
-        
-        select * from quiz;
-        select * from usuario;
-        
-        select *,
-        usuario.*
-	FROM quiz join usuario on fkUsuario = usuario.id;
-    
-    SELECT *
-        FROM quiz
-        WHERE fkUsuario = 9
-        ORDER BY id DESC
-        LIMIT 1;
-        
-        
-        
-SELECT lado_forca, COUNT(*) AS total
-FROM quiz q
-JOIN (
-    SELECT fkUsuario, MAX(id) AS ultimo_id
-    FROM quiz
-    GROUP BY fkUsuario
-) AS ultimos ON q.id = ultimos.ultimo_id
-GROUP BY lado_forca;
+INSERT INTO minigame (fkJogador, pontuacao, tempo)
+VALUES (8, 280, '00:00:28');
+
+
+select pontuacao from minigame where fkJogador = 8;
+
+
     

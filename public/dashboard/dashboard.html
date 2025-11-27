@@ -24,7 +24,7 @@
 
     <div class="janela">
         <div class="headerLeft" id="headerLeft">
-            <h1 id="tituloPagina">Star Forum</h1>
+            <h1 id="tituloPagina">Star Legends</h1>
 
             <div class="hello">
                 <h3 id="boasVindas">Olá, <span id="b_usuario">usuário</span>!</h3>
@@ -56,8 +56,12 @@
 
     </div>
     <div class="dash">
-        <h1 style="color: white;">Status universo:<span id="kpiU">a</span></h1>
+        <label style="color: white;">Status universo:<span id="kpiU">a</span></label>
         <div class="kpis">
+            <div class="kpi" id="kpiRecord">
+                <h1 style="color: white;">Recorde Grogugame</h1>
+                <span id="record" style="font-weight: bold; color: white;"></span>
+            </div>
             <div class="kpi" id="kpiJedi">
                 <h1 style="color: white;">Lado bom</h1>
                 <span id="kpiLB">a</span>
@@ -67,14 +71,14 @@
                 <span id="kpiLN"></span>
             </div>
         </div>
+        <div class="exibirGrafico">
 
-        <div class="btns-dash" id="btnAquario">
-        </div>
-        <div id="graficos" class="grafico">
-            <canvas id="myChartCanvas1"></canvas>
-        </div>
-        <div id="graficos" class="grafico">
-            <canvas id="myChartCanvas2"></canvas>
+            <div id="graficos" class="grafico2">
+                <canvas id="myChartCanvas2"></canvas>
+            </div>
+            <div id="graficos" class="grafico">
+                <canvas id="myChartCanvas1"></canvas>
+            </div>
         </div>
     </div>
 
@@ -93,6 +97,7 @@
         obterDadosGrafico();
         obterDadosGraficoGame();
         buscarLadoForca();
+        recordePontuacao();
     }
 
     function sair() {
@@ -122,6 +127,11 @@
                         btnLogout.style.backgroundColor = "#b01313";
                         kpiJedi.style.backgroundColor = 'rgb(173, 26, 26, 0.5)';
                         kpiSith.style.backgroundColor = 'rgb(173, 26, 26, 0.5)';
+                        kpiRecord.style.backgroundColor = 'rgb(173, 26, 26, 0.5)';
+                        kpiJedi.style.boxShadow = '0 0 15px #ff0000';
+                        kpiSith.style.boxShadow = '0 0 15px #ff0000';
+                        kpiRecord.style.boxShadow = '0 0 15px #ff0000';
+
 
 
                     }
@@ -138,6 +148,11 @@
                         btnLogout.style.backgroundColor = "#15b807";
                         kpiJedi.style.backgroundColor = 'rgb(9, 91, 5,0.5)';
                         kpiSith.style.backgroundColor = 'rgb(9, 91, 5,0.5)';
+                        kpiRecord.style.backgroundColor = 'rgb(9, 91, 5,0.5)';
+                        kpiRecord.style.boxShadow = '0 0 15px rgba(58, 240, 61)';
+                        kpiSith.style.boxShadow = '0 0 15px rgba(58, 240, 61)';
+                        kpiJedi.style.boxShadow = '0 0 15px rgba(58, 240, 61)';
+
 
                     }
                     else {
@@ -153,6 +168,9 @@
                         btnLogout.style.backgroundColor = "#0346b8";
                         kpiJedi.style.backgroundColor = 'rgba(14, 84, 108, 0.5)';
                         kpiSith.style.backgroundColor = 'rgba(14, 84, 108, 0.5)';
+                        kpiRecord.style.backgroundColor = 'rgba(14, 84, 108, 0.5)';
+
+
 
                     }
 
@@ -177,15 +195,15 @@
 
                     document.getElementById("kpiLN").innerHTML = ` <b>${resposta.jedi}</b>`;
 
-                    if (resposta.universo_Em_Perigo) {
-                        document.getElementById("kpiU").innerHTML =
-                            ` Dominado pelos rebeldes`;
-
-                        document.getElementById("kpiU").style.background = "#2ecc71";
-                    } else {
-                        document.getElementById("kpiU").innerHTML =
-                            ` Dominado pelo império!`;
-                        document.getElementById("kpiU").style.background = "#ff3b3b";
+                    if (resposta.universo_Em_Perigo == 1) {
+                        kpiU.innerHTML = ` Dominado pelos rebeldes`;
+                        kpiU.style.color = "#2ecc71";
+                    } else if(resposta.universo_Em_Perigo == 0){
+                        kpiU.innerHTML =` Dominado pelo império!`;
+                        kpiU.style.color = "#ff3b3b";
+                    }else{
+                        kpiU.innerHTML =` Universo em equilíbrio!`;
+                        kpiU.style.color = 'blue'
                     }
 
                 });
@@ -198,6 +216,31 @@
             });
     }
 
+    function recordePontuacao() {
+        fetch(`/kpiMinigame/recorde/${id_usuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log('chegou aqui')
+
+
+                    var recorde = resposta[0].Recorde;
+
+                    if (recorde == null) {
+                        recorde = 0;
+                    }
+
+                    record.innerHTML = `${recorde}`
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API KPI');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
+            });
+    }
     function obterDadosGrafico() {
 
         //alterarTitulo(lado_forca)
@@ -365,9 +408,10 @@
         let dadosPontuacao = []
 
         for (var i = 0; i < resposta.length; i++) {
-        labels.push(`Tentativa ${i + 1}`);
-        dadosPontuacao.push(resposta[i].pontuacao);
-    }
+            labels.push(`${i + 1}`);
+            dadosPontuacao.push(resposta[i].pontuacao);
+
+        }
         // Criando estrutura para plotar gráfico - dados
         let dados = {
             labels: labels,
@@ -407,7 +451,7 @@
             config
         );
 
-     
+
     }
-    
+
 </script>

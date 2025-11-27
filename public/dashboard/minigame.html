@@ -16,11 +16,10 @@
 
 </head>
 
-<body>
-
+<body onload="buscarLadoForca()">
     <div class="janela">
         <div class="headerLeft" id="headerLeft">
-            <h1 id="tituloPagina">Star Forum</h1>
+            <h1 id="tituloPagina">Star Legends</h1>
 
             <div class="hello">
                 <h3 id="boasVindas">Olá, <span id="id_usuario"></span>!</h3>
@@ -194,7 +193,69 @@
 
    
 
+function buscarLadoForca() {
 
+        fetch(`/resultadoQuiz/resultado/${b_usuario}`, { cache: 'no-store' }).then(function (response) {
+
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    console.log('chegou aqui')
+
+                    var lado = resposta[0].lado_forca;
+
+                    if (lado == 1) {
+                       
+                        tituloPagina.style.color = '#c21414';
+                        boasVindas.style.color = '#9f1111';
+                        id_usuario.style.color = '#9f1111';
+                        minigame.style.borderColor = '#b91e1e';
+                        btnNav.style.backgroundColor = '#ad1717';
+                        headerLeft.style.borderColor = '#b61111';
+                        btnNavWhite.style.backgroundColor = '#ad1717';
+                        btnLogout.style.backgroundColor = "#b01313";
+                      
+
+                        
+
+                    }
+                    else if (lado == 0) {
+
+                        tituloPagina.style.color = '#0c9b00';
+                        boasVindas.style.color = '#0a6203';
+                        id_usuario.style.color = '#0a6203';
+                        minigame.style.borderColor = '#15b807';
+                        btnNav.style.backgroundColor = '#15b807';
+                        headerLeft.style.borderColor = '#15b807';
+                        btnNavWhite.style.borderColor = '#15b807';
+                        btnLogout.style.backgroundColor = "#15b807";
+                        
+
+
+                    }
+                    else {
+                        tituloPagina.style.color = '#0c58d8';
+                        boasVindas.style.color = '#0c3a86';
+                        id_usuario.style.color = '#0c3a86';
+                        minigame.style.borderColor = '#0346b8';
+                        btnNav.style.backgroundColor = '#0346b8';
+                        headerLeft.style.borderColor = '#0346b8';
+                        btnNavWhite.style.borderColor = '#0346b8';
+                        btnLogout.style.backgroundColor = "#0346b8";
+
+
+
+                    }
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API cor da dash');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
+            });
+    }
 
 
 
