@@ -201,16 +201,13 @@
 
 
   function selecionar(divOpcao) {
-    // Tirar a seleção da outra
     var anterior = document.querySelector(".selecionada");
     if (anterior) {
       anterior.classList.remove("selecionada");
     }
 
-    // Marcar seleção na div clicada
     divOpcao.classList.add("selecionada");
 
-    // Marcar o input como selecionado
     var radio = divOpcao.querySelector("input");
     radio.checked = true;
   }
@@ -292,7 +289,7 @@
 
             setTimeout(() => {
               window.location = "./dashboard/dashboard.html";
-            }, "10000");
+            },10000);
 
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";

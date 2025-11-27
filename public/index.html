@@ -10,7 +10,7 @@
   <link rel="icon" href="./assets/img/logo.png">
 </head>
 
-<body>
+<body onload="iniciar()">
   <div class="header">
     <div class="container">
       <img src="./assets/img/logo.png" alt="">
@@ -113,17 +113,50 @@
     <H1>Linha do tempo - Star Wars</H1>
     <div class="container">
       <div class="inf">
-        <div class="carrossel on">
+        <div class="carrossel" style="display: flex;" id="episode1">
           <img src="./assets/img/episode1.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum corporis consequatur minus
-            voluptatibus voluptatum, eaque dolore placeat doloremque similique eos? Explicabo, culpa
-            perferendis. Doloribus et totam pariatur dicta necessitatibus recusandae.</p>
+          <p>Jedi Qui-Gon Jinn e seu aprendiz Obi-Wan descobrem um garoto prodígio, Anakin Skywalker, enquanto enfrentam a crescente ameaça da Federação do Comércio e do misterioso Darth Maul.</p>
         </div>
-        <div class="carrosel">
+        <div class="carrosel" style="display: none;" id="episode2">
+          <img src="./assets/img/episode2.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>Um Anakin mais velho inicia seu treinamento Jedi, enquanto uma conspiração separatista ameaça a galáxia. Seu romance secreto com Padmé começa, e um exército clone surge.</p>
+        </div>
+        <div class="carrosel" style="display: none;" id="episode3">
+          <img src="./assets/img/episode3.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>Anakin cai no lado sombrio, tornando-se Darth Vader. A República desmorona e Palpatine transforma o governo no Império Galáctico.</p>
+        </div>
+        <div class="carrosel" style="display: none;" id="episode5">
+          <img src="./assets/img/solo.png" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>A origem de Han Solo: sua juventude, encontros com Chewbacca e Lando, e a formação de seu lado fora-da-lei.</p>
+        </div>
+        <div class="carrosel" style="display: none;" id="episode4">
           <img src="./assets/img/rogueOne.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum corporis consequatur minus
-            voluptatibus voluptatum, eaque dolore placeat doloremque similique eos? Explicabo, culpa
-            perferendis. Doloribus et totam pariatur dicta necessitatibus recusandae.</p>
+          <p>Um grupo de rebeldes arrisca tudo para roubar os planos da Estrela da Morte, abrindo caminho para os eventos de Episódio IV.</p>
+        </div>
+        <div class="carrosel" style="display: none;" id="episode6">
+          <img src="./assets/img/episode4.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>Luke Skywalker descobre seu destino Jedi ao se unir a Han Solo e Leia para destruir a Estrela da Morte e enfrentar Darth Vader pela primeira vez.</p>
+        </div>
+        <div class="carrosel" style="display: none;" id="episode7">
+          <img src="./assets/img/imperioContraAtaca.webp" alt="Carrosel dos filmes"
+            style="color: white; font-size: 30px;">
+          <p>A Rebelião sofre grandes perdas enquanto Luke treina com Yoda. Um confronto marcante revela a chocante verdade sobre Vader.</p>
+        </div>
+        <div class="carrosel" style="display: none;" id="episode8">
+          <img src="./assets/img/retornoJedi.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>Luke enfrenta Vader e o Imperador numa batalha final, enquanto aliados tentam destruir a nova Estrela da Morte e pôr fim ao Império.</p>
+        </div>
+        <div class="carrosel" style="display: none;" id="episode9">
+          <img src="./assets/img/despertar.jpg" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>Rey, uma sucateira solitária, desperta um poder misterioso enquanto a Primeira Ordem ameaça a galáxia. Ela cruza caminhos com Finn, Han Solo e Leia.</p>
+        </div>
+        <div class="carrosel" style="display: none;" id="episode10">
+          <img src="./assets/img/Star_Wars_The_Last_Jedi.png" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>Rey busca Luke para entender seu papel na Força, enquanto a Resistência foge desesperadamente da Primeira Ordem. Kylo Ren confronta seu passado.</p>
+        </div>
+        <div class="carrosel" style="display: none;" id="episode11">
+          <img src="./assets/img/lastEpisode.webp" alt="Carrosel dos filmes" style="color: white; font-size: 30px;">
+          <p>Rey e seus aliados enfrentam o retorno surpreendente do Imperador Palpatine em um último esforço para salvar a galáxia.</p>
         </div>
       </div>
       <button id="avançarBtn" onclick="proximaImg()"><img src="./assets/img/rigth_arrow.png" alt=""></button>
@@ -199,7 +232,18 @@
     <div class="container">
       <div class="george">
         <img src="./assets/img/criador.jpg" alt="">
-        <p>George Lucas é um dos nomes mais importantes da história do entretenimento moderno. Nascido em 1944, ele se tornou cineasta, roteirista, produtor e um dos maiores visionários de Hollywood. Lucas criou Star Wars, uma saga que redefiniu completamente o gênero de ficção científica e se tornou um fenômeno cultural global. Sua capacidade de unir narrativa épica, tecnologia inovadora e construção de mundos profundos mudou para sempre a forma como histórias são contadas no cinema. Além disso, Lucas também é o criador de Indiana Jones, ao lado de Steven Spielberg, outra franquia icônica que marcou gerações com aventuras inesquecíveis. Para tornar suas ideias possíveis, ele fundou empresas que revolucionaram a indústria, como a Industrial Light & Magic (ILM) — responsável por efeitos especiais que abriram novos caminhos no cinema — e a Skywalker Sound, que elevou o nível da produção de áudio em filmes. Mesmo após vender a Lucasfilm para a Disney em 2012, a influência de George Lucas permanece viva em cada novo filme, série, jogo e obra inspirada no universo que ele começou. Seu legado ultrapassa o cinema: ele moldou a cultura pop, inspirou milhões de fãs e ajudou a transformar a tecnologia usada na produção audiovisual mundial. </p>
+        <p>George Lucas é um dos nomes mais importantes da história do entretenimento moderno. Nascido em 1944, ele se
+          tornou cineasta, roteirista, produtor e um dos maiores visionários de Hollywood. Lucas criou Star Wars, uma
+          saga que redefiniu completamente o gênero de ficção científica e se tornou um fenômeno cultural global. Sua
+          capacidade de unir narrativa épica, tecnologia inovadora e construção de mundos profundos mudou para sempre a
+          forma como histórias são contadas no cinema. Além disso, Lucas também é o criador de Indiana Jones, ao lado de
+          Steven Spielberg, outra franquia icônica que marcou gerações com aventuras inesquecíveis. Para tornar suas
+          ideias possíveis, ele fundou empresas que revolucionaram a indústria, como a Industrial Light & Magic (ILM) —
+          responsável por efeitos especiais que abriram novos caminhos no cinema — e a Skywalker Sound, que elevou o
+          nível da produção de áudio em filmes. Mesmo após vender a Lucasfilm para a Disney em 2012, a influência de
+          George Lucas permanece viva em cada novo filme, série, jogo e obra inspirada no universo que ele começou. Seu
+          legado ultrapassa o cinema: ele moldou a cultura pop, inspirou milhões de fãs e ajudou a transformar a
+          tecnologia usada na produção audiovisual mundial. </p>
       </div>
     </div>
   </div>
@@ -234,46 +278,44 @@
   function quiz() {
     window.location.href = 'login.html'
   }
+  indiceAtual = 0
+  var filmes = [
+  document.getElementById('episode1'),
+  document.getElementById('episode2'),
+  document.getElementById('episode3'),
+  document.getElementById('episode4'),
+  document.getElementById('episode5'),
+  document.getElementById('episode6'),
+  document.getElementById('episode7'),
+  document.getElementById('episode8'),
+  document.getElementById('episode9'),
+  document.getElementById('episode10'),
+  document.getElementById('episode11')
+];
 
-  var slide = document.querySelectorAll('.carrossel');
-  var proxBotao = document.getElementById('avançarBtn');
-  var voltarBotao = document.getElementById('voltarBtn');
-  var slideAtual = 0;
 
-
-  function esconderImg(){
-    slide.forEach(item => item.classList.remove('on'))
-
-    };
-  
-  function mostrarImg(){
-    slide[slideAtual].classList.add('on')
-  }
-
-  function proximaImg(){
-    esconderImg()
-    if(slideAtual == slide.length - 1){
-      slideAtual = 0
-    }else{
-      slideAtual++
+  function mostrarFilme() {
+    for (var i = 0; i < filmes.length; i++) {
+      if (i == indiceAtual) {
+        filmes[i].style.display = 'flex';
+      } else {
+        filmes[i].style.display = 'none';
+      }
     }
-
-    mostrarImg()
   }
 
-  function voltarImg(){
-    esconderImg()
-    if(slideAtual == 0){
-      slideAtual = slide.length - 1
-    }else{
-      slideAtual--
-    }
-
-    mostrarImg()
+  function proximaImg() {
+    indiceAtual = indiceAtual + 1;
+    if (indiceAtual >= filmes.length) indiceAtual = 0;
+    mostrarFilme();
   }
 
-  mostrarImg();
+  function voltarImg() {
+    indiceAtual = indiceAtual - 1;
+    if (indiceAtual < 0) indiceAtual = filmes.length - 1;
+    mostrarFilme();
+  }
 
-  proxBotao.addEventListener('click');
-  voltarBotao.addEventListener('click');
+
+  mostrarFilme();
 </script>

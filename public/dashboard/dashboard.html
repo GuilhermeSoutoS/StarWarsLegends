@@ -63,12 +63,12 @@
                 <span id="record" style="font-weight: bold; color: white;"></span>
             </div>
             <div class="kpi" id="kpiJedi">
-                <h1 style="color: white;">Lado bom</h1>
-                <span id="kpiLB">a</span>
+                <h1 style="color: white;">Lado luminoso</h1>
+                <span id="kpiLB" style="color: white;">a</span>
             </div>
             <div class="kpi" id="kpiSith">
                 <h1 style="color: white;">Lado negro</h1>
-                <span id="kpiLN"></span>
+                <span id="kpiLN" style="color: white;"></span>
             </div>
         </div>
         <div class="exibirGrafico">
@@ -195,10 +195,10 @@
 
                     document.getElementById("kpiLN").innerHTML = ` <b>${resposta.jedi}</b>`;
 
-                    if (resposta.universo_Em_Perigo == 1) {
-                        kpiU.innerHTML = ` Dominado pelos rebeldes`;
+                    if (resposta.universo_Em_Perigo) {
+                        kpiU.innerHTML = ` Governado pelos rebeldes`;
                         kpiU.style.color = "#2ecc71";
-                    } else if(resposta.universo_Em_Perigo == 0){
+                    } else if(resposta.universo_Em_Perigo){
                         kpiU.innerHTML =` Dominado pelo império!`;
                         kpiU.style.color = "#ff3b3b";
                     }else{
@@ -355,19 +355,18 @@
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    //obterDadosGrafico();
-                    // alertar(novoRegistro, idAquario);
+                  
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
 
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+
                     proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+               
                 proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, myChart), 2000);
             }
         })
@@ -402,8 +401,7 @@
     function plotarGraficoGame(resposta) {
 
         console.log('iniciando plotagem do gráfico...' + JSON.stringify(resposta));
-
-        // Criando estrutura para plotar gráfico - labels
+        resposta.reverse();
         let labels = [];
         let dadosPontuacao = []
 
@@ -437,15 +435,10 @@
         console.log('Dados:')
         console.log(dados.datasets)
         console.log('----------------------------------------------')
-
-
-        // Criando estrutura para plotar gráfico - config
         const config = {
             type: 'line',
             data: dados,
         };
-
-        // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
             document.getElementById(`myChartCanvas2`),
             config

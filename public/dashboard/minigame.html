@@ -66,11 +66,10 @@
             <div class="gameover" id="container3" style="display: none;">
                 <h1 class="pixel">GAME OVER</h1>
                 <P class="pixel">Veja seu histórico na tela de dashboards!</P>
-                <button class="pixel" onclick="restart()">RESTART</button>
+                <!-- <button class="pixel" onclick="restart()">RESTART</button> -->
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
@@ -148,6 +147,9 @@
           console.log("resposta: ", resposta);
 
           if (resposta.ok) {
+            setTimeout(() => {
+              window.location = "./dashboard.html";
+            }, 3000);
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
           }
@@ -191,7 +193,6 @@
     document.addEventListener('keydown', pular)
 
 
-   
 
 function buscarLadoForca() {
 

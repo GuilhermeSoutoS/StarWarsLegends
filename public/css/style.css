@@ -311,10 +311,107 @@ a {
     height: 100%;
 }
 
-.carrossel.on {
-    opacity: 1;
-    transform: translateX(0);
+#episode2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
 }
+
+#episode3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
+}
+
+#episode4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
+}
+
+#episode5{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
+}
+
+#episode6{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
+}
+
+#episode7{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
+}
+
+#episode8{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
+}
+
+#episode9{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
+}
+
+#episode10{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
+}
+
+#episode11{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%; 
+    width: 100%;
+    height: 100%;
+}
+
+
 .inf {
     display: flex;
     flex-wrap: nowrap;
@@ -656,6 +753,7 @@ a {
     box-shadow: 0 0 5px #00eaff, 0 0 10px #00eaff;
     border-radius: 3px;
     color: white;
+    cursor: pointer;
 }
 
 /*Tela de cadastro*/
