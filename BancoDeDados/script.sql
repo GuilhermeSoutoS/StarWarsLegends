@@ -50,5 +50,12 @@ VALUES (8, 280, '00:00:28');
 
 select pontuacao from minigame where fkJogador = 8;
 
+select max(pontuacao) from minigame
+where fkJogador = 8 LIMIT 5;
+SELECT * FROM minigame;
 
+update quiz set lado_forca = null
+where fkUsuario = 8;
+
+select pontuacao from minigame where fkJogador = 8;
     
