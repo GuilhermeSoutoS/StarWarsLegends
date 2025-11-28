@@ -191,11 +191,11 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     console.log('chegou aqui')
 
-                    document.getElementById("kpiLB").innerHTML = ` <b>${resposta.sith}</b>`;
+                    document.getElementById("kpiLB").innerHTML = ` <b>${resposta.jedi}</b>`;
 
-                    document.getElementById("kpiLN").innerHTML = ` <b>${resposta.jedi}</b>`;
+                    document.getElementById("kpiLN").innerHTML = ` <b>${resposta.sith}</b>`;
 
-                    if (resposta.universo_Em_Perigo) {
+                    if (resposta.universoSalvo) {
                         kpiU.innerHTML = ` Governado pelos rebeldes`;
                         kpiU.style.color = "#2ecc71";
                     } else if(resposta.universo_Em_Perigo){

@@ -3,8 +3,8 @@ var database = require("../database/config")
 function exibir() {
     var instrucao = `
     select 
-	    sum(lado_forca = 0) as lado_negro,
-        sum(lado_forca = 1) as lado_luz
+	    sum(lado_forca = 0) as lado_luz,
+        sum(lado_forca = 1) as lado_negro
     from quiz q
 JOIN (
     SELECT fkUsuario, MAX(id) AS ultimo_id

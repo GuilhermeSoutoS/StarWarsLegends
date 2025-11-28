@@ -7,12 +7,13 @@ function exibir(req, res) {
         var lado_luz = resultado[0].lado_luz;
 
         var universoEmPerigo = lado_negro > lado_luz;
+        var universoSalvo = lado_luz > lado_negro
         res.status(200).json({
 
             sith: lado_negro,
             jedi: lado_luz,
-            universo_Em_Perigo: universoEmPerigo
-
+            universo_Em_Perigo: universoEmPerigo,
+            universoSalvo: universoSalvo
         });
 
     }).catch(function (erro) {
