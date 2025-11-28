@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/quize.css">
-  <link rel="img" href="./assets/img/logo.png">
+  <link rel="icon" href="../assets/img/logo.png">
+
 
   <title>Quiz</title>
 </head>
@@ -36,7 +37,7 @@
       </div>
 
       <div class="btn-logout" onclick="sair()" id="btnLogout">
-        <h3>Sair</h3>
+        <a href="index.html"><h3>Sair</h3></a>
       </div>
 
     </div>
@@ -289,7 +290,7 @@
 
             setTimeout(() => {
               window.location = "./dashboard/dashboard.html";
-            },10000);
+            },20000);
 
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
